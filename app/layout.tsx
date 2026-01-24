@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "Engineering the next generation of digital infrastructure.",
 };
 
+import { PageTransition } from "@/components/layout/page-transition";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${instrumentSerif.variable} antialiased selection:bg-black selection:text-white`}
       >
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
       </body>
     </html>
   );
