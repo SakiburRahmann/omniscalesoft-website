@@ -31,10 +31,10 @@ export function Navbar() {
     return (
         <header
             className={cn(
-                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
                 scrolled
-                    ? "bg-background/80 backdrop-blur-md border-b border-white/10 py-3"
-                    : "bg-transparent py-5"
+                    ? "bg-white/70 dark:bg-black/70 backdrop-blur-xl border-b border-black/5 dark:border-white/5 py-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+                    : "bg-transparent py-6"
             )}
         >
             <Container>
