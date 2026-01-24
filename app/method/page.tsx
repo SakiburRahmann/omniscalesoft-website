@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { motion } from "framer-motion"
+import { Pipeline3D } from "@/components/ui/pipeline-3d"
 
 const methods = [
     {
@@ -49,12 +50,18 @@ export default function Method() {
 
             <section className="pt-40 pb-24 md:pt-60 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <AnimateReveal variant="slide-up">
-                        <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] mb-12 leading-[0.9]">Methodology<span className="text-[#000000]">.</span></h1>
-                        <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-3xl leading-relaxed mb-32">
-                            A transparent, engineering-led process designed to mitigate risk and maximize ROI.
-                        </p>
-                    </AnimateReveal>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+                        <AnimateReveal variant="slide-up">
+                            <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] mb-12 leading-[0.9]">Methodology<span className="text-[#000000]">.</span></h1>
+                            <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-3xl leading-relaxed">
+                                A transparent, engineering-led process designed to mitigate risk and maximize ROI.
+                            </p>
+                        </AnimateReveal>
+
+                        <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
+                            <Pipeline3D />
+                        </div>
+                    </div>
 
                     <div className="space-y-40">
                         {methods.map((m, i) => (

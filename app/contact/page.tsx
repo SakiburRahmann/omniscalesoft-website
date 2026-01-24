@@ -5,6 +5,8 @@ import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { Button } from "@/components/ui/button"
 
+import { Signal3D } from "@/components/ui/signal-3d"
+
 export default function Contact() {
     return (
         <main className="min-h-screen bg-white font-sans text-black">
@@ -12,9 +14,15 @@ export default function Contact() {
 
             <section className="pt-40 pb-24 md:pt-60 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <AnimateReveal variant="slide-up">
-                        <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] mb-24 leading-[0.9]">Inquiry<span className="text-[#000000]">.</span></h1>
-                    </AnimateReveal>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+                        <AnimateReveal variant="slide-up">
+                            <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] leading-[0.9]">Inquiry<span className="text-[#000000]">.</span></h1>
+                        </AnimateReveal>
+
+                        <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
+                            <Signal3D />
+                        </div>
+                    </div>
 
                     <AnimateReveal variant="slide-up" staggerChildren={0.25} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#e4e4e7] border border-[#e4e4e7]">
                         <RevealItem className="bg-white p-12 md:p-20 flex flex-col items-start hover:bg-slate-50 transition-colors">
