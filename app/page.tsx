@@ -100,7 +100,7 @@ export default function Home() {
           </AnimateReveal>
 
           {/* WebGL 3D Spectacle: Cinematic Visual Machine */}
-          <div className="relative w-full h-[300px] md:h-auto overflow-visible order-first lg:order-last">
+          <div className="relative w-full h-[400px] md:h-[600px] lg:h-[800px] overflow-visible order-last">
             <HyperCore3D />
           </div>
         </div>

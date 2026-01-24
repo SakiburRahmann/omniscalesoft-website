@@ -107,7 +107,7 @@ function AtmosphericParticles({ count = 500 }) {
 
 export function HyperCore3D() {
     return (
-        <div className="w-full h-full min-h-[350px] relative">
+        <div className="w-full h-full relative">
             <Canvas shadows dpr={[1, 2]}>
                 <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={45} />
                 <GeometricHub />
