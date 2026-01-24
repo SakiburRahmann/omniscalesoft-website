@@ -106,6 +106,16 @@ function AtmosphericParticles({ count = 500 }) {
 }
 
 export function HyperCore3D() {
+    const [mounted, setMounted] = React.useState(false)
+
+    React.useEffect(() => {
+        setMounted(true)
+    }, [])
+
+    if (!mounted) {
+        return <div className="w-full h-full relative bg-transparent" />
+    }
+
     return (
         <div className="w-full h-full relative">
             <Canvas shadows dpr={[1, 2]}>
