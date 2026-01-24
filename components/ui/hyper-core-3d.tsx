@@ -105,15 +105,14 @@ function AtmosphericParticles({ count = 500 }) {
     )
 }
 
-export function HyperCore3D() {
-    return (
-        <div className="w-full h-[400px] md:h-[600px] relative">
-            <Canvas shadows dpr={[1, 2]}>
-                <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={35} />
-                <GeometricHub />
-                {/* Soft cinematic orbit, non-interactive */}
-                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
-            </Canvas>
-        </div>
-    )
+return (
+    <div className="w-full h-full min-h-[350px] relative">
+        <Canvas shadows dpr={[1, 2]}>
+            <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={45} />
+            <GeometricHub />
+            {/* Soft cinematic orbit, non-interactive */}
+            <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
+        </Canvas>
+    </div>
+)
 }
