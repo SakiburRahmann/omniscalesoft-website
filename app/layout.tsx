@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${instrumentSerif.variable} antialiased selection:bg-black selection:text-white`}
+        suppressHydrationWarning
       >
         <PageTransition>
           {children}
