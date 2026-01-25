@@ -290,9 +290,9 @@ export default function Home() {
             ].map((s, i) => (
               <motion.div
                 key={i}
-                initial={{ x: i % 2 === 0 ? -100 : 100, opacity: 0 }}
+                initial={{ x: i % 2 === 0 ? -50 : 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{
                   duration: 1.5,
                   delay: i * 0.4,
