@@ -170,7 +170,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <AnimateReveal variant="slide-up" staggerChildren={0.2}>
 
-            <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl">
+            <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
               <motion.span
                 whileInView={{ y: [0, -5, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
