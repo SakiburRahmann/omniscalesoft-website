@@ -240,17 +240,16 @@ export default function Home() {
                 title: "Strategy",
                 desc: "Product thinking, technical direction, and system planning that eliminates guesswork before engineering begins.",
                 icon: (
-                  <div className="relative w-12 h-12 border border-slate-200 bg-white overflow-hidden p-2">
-                    {/* Interconnected Ecosystem */}
+                  <div className="relative w-14 h-14 border-2 border-slate-900 bg-white overflow-hidden p-2">
+                    {/* High-Contrast Logic Network */}
                     <div className="absolute inset-0 p-2">
                       <svg viewBox="0 0 48 48" className="w-full h-full fill-none">
                         <motion.path
-                          initial={{ pathLength: 0 }}
-                          animate={{ pathLength: [0, 1, 1, 0] }}
-                          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                          stroke="black"
-                          strokeWidth="0.5"
-                          strokeOpacity="0.2"
+                          initial={{ pathLength: 0, pathOffset: 0 }}
+                          animate={{ pathLength: [0, 1, 1, 0], pathOffset: [0, 0, 1, 1] }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                          stroke="#10b981"
+                          strokeWidth="2"
                           d="M10 10 L38 38 M10 38 L38 10 M24 5 L24 43"
                         />
                         {[
@@ -262,20 +261,19 @@ export default function Home() {
                             key={i}
                             cx={node.cx}
                             cy={node.cy}
-                            r="1.5"
-                            fill="black"
+                            r="2.5"
+                            fill={i === 4 ? "#10b981" : "#000"}
                             animate={{
-                              opacity: [0.2, 1, 0.2],
-                              scale: [1, 1.5, 1],
-                              fill: i === 4 ? "#10b981" : "#000"
+                              opacity: [0.3, 1, 0.3],
+                              scale: [1, 1.3, 1]
                             }}
-                            transition={{ duration: 3, delay: i * 0.4, repeat: Infinity }}
+                            transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
                           />
                         ))}
                       </svg>
                     </div>
                     <div className="relative z-10 flex items-center justify-center h-full">
-                      <Search className="w-5 h-5 text-black/60" />
+                      <Search className="w-6 h-6 text-black/40" />
                     </div>
                   </div>
                 )
@@ -284,21 +282,20 @@ export default function Home() {
                 title: "Engineering",
                 desc: "Robust, secure, and scalable software built with modern architectures and disciplined workflows.",
                 icon: (
-                  <div className="relative w-12 h-12 border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
-                    {/* Modular Isometric Assembly */}
+                  <div className="relative w-14 h-14 border-2 border-slate-900 bg-white overflow-hidden flex items-center justify-center">
+                    {/* Modular Isometric Builder */}
                     <div className="absolute inset-0">
                       <svg viewBox="0 0 48 48" className="w-full h-full fill-none">
                         {[0, 1, 2].map((i) => (
                           <motion.path
                             key={i}
                             animate={{
-                              opacity: [0.1, 0.4, 0.1],
-                              scale: [0.8, 1, 0.8],
-                              rotate: [0, 5, 0]
+                              opacity: [0.1, 0.8, 0.1],
+                              scale: [0.8, 1.1, 0.8]
                             }}
-                            transition={{ duration: 5, delay: i * 0.6, repeat: Infinity }}
-                            stroke="black"
-                            strokeWidth="0.5"
+                            transition={{ duration: 4, delay: i * 0.8, repeat: Infinity }}
+                            stroke={i === 0 ? "#10b981" : "#000"}
+                            strokeWidth="1.5"
                             d={i === 0 ? "M24 10 L38 18 L24 26 L10 18 Z" : i === 1 ? "M10 18 L10 32 L24 40 L24 26 Z" : "M38 18 L38 32 L24 40 L24 26 Z"}
                           />
                         ))}
@@ -306,7 +303,7 @@ export default function Home() {
                     </div>
                     <motion.div
                       animate={{ y: [0, -4, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                       className="relative z-10"
                     >
                       <Hammer className="w-5 h-5 text-black" />
@@ -318,37 +315,27 @@ export default function Home() {
                 title: "Innovation",
                 desc: "Continuous optimization, performance tuning, and intelligent automation as your product grows.",
                 icon: (
-                  <div className="relative w-12 h-12 border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
-                    {/* Radiant Shard Evolution */}
-                    <div className="absolute inset-0">
+                  <div className="relative w-14 h-14 border-2 border-slate-900 bg-white overflow-hidden flex items-center justify-center">
+                    {/* High-Contrast Radiant Pulse */}
+                    <div className="absolute inset-0 flex items-center justify-center">
                       {[...Array(3)].map((_, i) => (
                         <motion.div
                           key={i}
                           animate={{
-                            rotate: [0, 360],
-                            scale: [1, 1.4, 1],
-                            opacity: [0.1, 0.3, 0.1]
+                            scale: [0.5, 2],
+                            opacity: [0.8, 0]
                           }}
-                          transition={{ duration: 10 + i * 2, repeat: Infinity, ease: "linear" }}
-                          className="absolute inset-2 border border-black/5 rounded-full"
+                          transition={{ duration: 3, delay: i * 1, repeat: Infinity, ease: "easeOut" }}
+                          className="absolute w-6 h-6 border-2 border-emerald-500 rounded-full"
                         />
                       ))}
                     </div>
                     <motion.div
-                      animate={{
-                        rotate: [0, -360],
-                      }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-3 border-t border-emerald-500/20 rounded-full"
-                    />
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.8, 1, 0.8]
-                      }}
-                      transition={{ duration: 4, repeat: Infinity }}
+                      animate={{ scale: [0.9, 1.1, 0.9] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="relative z-10 w-6 h-6 bg-slate-950 rounded-full flex items-center justify-center shadow-lg"
                     >
-                      <TrendingUp className="w-5 h-5 text-black relative z-10" />
+                      <TrendingUp className="w-3 h-3 text-emerald-400" />
                     </motion.div>
                   </div>
                 )
