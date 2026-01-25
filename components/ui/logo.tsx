@@ -64,7 +64,7 @@ export function Logo({ className }: { className?: string }) {
             {/* Brand Typography */}
             <span className="flex flex-col leading-none">
                 <span className="text-lg font-serif font-black tracking-tight text-black flex items-baseline">
-                    OmniScale<span className="text-[10px] font-black tracking-[0.2em] ml-1 text-slate-400 uppercase">Studio</span>
+                    OmniScale<span className="text-[10px] font-black tracking-[0.2em] ml-1 text-slate-400 uppercase">Soft</span>
                 </span>
             </span>
         </div>
