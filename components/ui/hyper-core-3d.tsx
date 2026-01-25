@@ -33,11 +33,11 @@ function GeometricHub({ color }: { color: string }) {
     const meshRef = useRef<THREE.Group>(null!)
     const voxelRef = useRef<THREE.Group>(null!)
     const groupRef = useRef<THREE.Group>(null!)
-    const { mouse } = useThree()
-
     // Interaction tracking
     const activeFactor = useRef(0)
     const lastMouse = useRef(new THREE.Vector2(0, 0))
+
+    const { mouse } = useThree()
 
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
