@@ -35,18 +35,39 @@ function GeometricHub({ color }: { color: string }) {
     const groupRef = useRef<THREE.Group>(null!)
     const { mouse } = useThree()
 
+    // Interaction tracking
+    const activeFactor = useRef(0)
+    const lastMouse = useRef(new THREE.Vector2(0, 0))
+
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
 
-        // Slower, more deliberate rotation
-        meshRef.current.rotation.y = t * 0.1
-        meshRef.current.rotation.x = t * 0.05
-        voxelRef.current.rotation.y = -t * 0.08
-        voxelRef.current.rotation.z = t * 0.03
+        // Activity detection: Glow up when mouse is moving
+        const mouseSpeed = lastMouse.current.distanceTo(mouse)
+        const targetActive = mouseSpeed > 0.001 ? 1 : 0
+        activeFactor.current = THREE.MathUtils.lerp(activeFactor.current, targetActive, 0.02)
+        lastMouse.current.copy(mouse)
+
+        // Slow, deliberate rotation accelerated slightly when active
+        const rotSpeed = 0.5 + (activeFactor.current * 1.5)
+        meshRef.current.rotation.y = t * 0.1 * rotSpeed
+        meshRef.current.rotation.x = t * 0.05 * rotSpeed
+        voxelRef.current.rotation.y = -t * 0.08 * rotSpeed
+        voxelRef.current.rotation.z = t * 0.03 * rotSpeed
 
         // Refined hover parallax (Interactive Depth)
         groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.3, 0.1)
         groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.y * 0.3, 0.1)
+
+        // Dynamic Glow Modulation (Modulating uniform material properties)
+        meshRef.current.children.forEach((child, i) => {
+            if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
+                const baseOpacity = [0.1, 0.2, 0.3][i] || 0.1
+                const baseEmissive = [0.1, 0.2, 0.4][i] || 0.1
+                child.material.opacity = THREE.MathUtils.lerp(baseOpacity, baseOpacity * 2.5, activeFactor.current)
+                child.material.emissiveIntensity = THREE.MathUtils.lerp(baseEmissive, baseEmissive * 8, activeFactor.current)
+            }
+        })
     })
 
     // Procedural voxel positions
@@ -76,9 +97,9 @@ function GeometricHub({ color }: { color: string }) {
                         wireframe
                         color={color}
                         transparent
-                        opacity={0.4}
+                        opacity={0.1}
                         emissive={color}
-                        emissiveIntensity={0.5}
+                        emissiveIntensity={0.1}
                     />
                 </mesh>
                 <mesh rotation={[Math.PI / 4, 0, Math.PI / 4]}>
@@ -87,9 +108,9 @@ function GeometricHub({ color }: { color: string }) {
                         wireframe
                         color={color}
                         transparent
-                        opacity={0.6}
+                        opacity={0.2}
                         emissive={color}
-                        emissiveIntensity={1}
+                        emissiveIntensity={0.2}
                     />
                 </mesh>
                 <mesh rotation={[-Math.PI / 4, Math.PI / 2, 0]}>
@@ -98,9 +119,9 @@ function GeometricHub({ color }: { color: string }) {
                         wireframe
                         color={color}
                         transparent
-                        opacity={0.8}
+                        opacity={0.3}
                         emissive={color}
-                        emissiveIntensity={2}
+                        emissiveIntensity={0.4}
                     />
                 </mesh>
             </group>
@@ -114,7 +135,7 @@ function GeometricHub({ color }: { color: string }) {
                             <meshStandardMaterial
                                 color={color}
                                 emissive={color}
-                                emissiveIntensity={v.size * 10}
+                                emissiveIntensity={0.1}
                             />
                         </mesh>
                     </Float>
@@ -123,9 +144,9 @@ function GeometricHub({ color }: { color: string }) {
 
             <AtmosphericParticles count={400} color={color} />
 
-            <ambientLight intensity={color === "white" ? 0.4 : 0.8} />
-            <pointLight position={[10, 10, 10]} intensity={color === "white" ? 6 : 2} />
-            <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={color === "white" ? 6 : 2} />
+            <ambientLight intensity={color === "white" ? 0.3 : 0.6} />
+            <pointLight position={[10, 10, 10]} intensity={color === "white" ? 3 : 1} />
+            <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={color === "white" ? 3 : 1} />
         </group>
     )
 }
@@ -154,7 +175,7 @@ function AtmosphericParticles({ count = 400, color = "black" }) {
                 size={0.04}
                 sizeAttenuation={true}
                 depthWrite={false}
-                opacity={0.3}
+                opacity={0.2}
             />
         </Points>
     )
