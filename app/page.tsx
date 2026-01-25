@@ -335,36 +335,50 @@ export default function Home() {
           </div>
 
           <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white shadow-2xl overflow-hidden group">
-            <div className="absolute inset-0 flex items-end justify-center p-12 gap-4">
-              {[...Array(8)].map((_, i) => (
+            <div className="absolute inset-0 flex items-center justify-center">
+              {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  initial={{ height: 0 }}
-                  whileInView={{ height: `${20 + (i * 10)}%` }}
-                  transition={{ duration: 2, delay: i * 0.1, ease: "easeOut" }}
-                  className="w-full bg-slate-900 overflow-hidden relative"
-                >
-                  <motion.div
-                    animate={{ y: ["-100%", "100%"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-x-0 h-1/4 bg-gradient-to-b from-transparent via-emerald-500/50 to-transparent"
-                  />
-                </motion.div>
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: [0, 0.2, 0] }}
+                  transition={{
+                    duration: 4,
+                    delay: i * 0.6,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                  className="absolute border border-slate-900"
+                  style={{
+                    width: `${(i + 1) * 20}%`,
+                    height: `${(i + 1) * 20}%`,
+                    transformStyle: "preserve-3d"
+                  }}
+                />
               ))}
+              <div className="relative z-10 text-center">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="w-24 h-24 border border-emerald-500/30 flex items-center justify-center p-4 bg-white/50 backdrop-blur-sm"
+                >
+                  <Layers className="w-8 h-8 text-black" />
+                </motion.div>
+              </div>
             </div>
             <div className="absolute top-12 left-12">
-              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500">Stability Matrix</span>
-              <div className="mt-4 text-3xl font-serif text-black opacity-40">Cumulative<br />Reliability</div>
+              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500">Systemic Integrity</span>
+              <div className="mt-4 text-3xl font-serif text-black opacity-40">Recursive<br />Architecture</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Transition CTA */}
-      <section className="py-24 md:py-40 px-6 bg-white/15 text-black text-center relative overflow-hidden z-10 transition-colors duration-1000">
+      {/* Transition CTA */}
+      <section className="py-24 md:py-40 px-6 bg-black text-white text-center relative overflow-hidden z-10 transition-colors duration-1000">
         {/* Background Ambient Glow */}
         <motion.div
-          whileInView={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          whileInView={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none will-change-transform"
         />
@@ -375,7 +389,7 @@ export default function Home() {
               <motion.span
                 whileInView={{ opacity: [0.8, 1, 0.8] }}
                 transition={{ duration: 4, repeat: Infinity }}
-                className="will-change-opacity"
+                className="will-change-opacity text-white"
               >
                 Have a complex idea? <br />Let&apos;s talk about it.
               </motion.span>
@@ -387,7 +401,7 @@ export default function Home() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="will-change-transform"
             >
-              <Button size="lg" className="px-12 py-8 text-xl bg-black text-white hover:bg-slate-800 transition-all uppercase font-black" asChild>
+              <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
                 <Link href="/contact">Establish Connection</Link>
               </Button>
             </motion.div>
