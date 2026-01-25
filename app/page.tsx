@@ -231,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* Service Matrix: "What We Actually Do" */}
-      <section className="py-24 md:py-48 px-6 bg-white/20 backdrop-blur-sm border-b border-slate-100 z-10 relative transition-colors duration-1000">
+      <section className="py-24 md:py-48 px-6 bg-white/20 border-b border-slate-100 z-10 relative transition-colors duration-1000">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-px md:bg-slate-100 md:border md:border-slate-100">
             {[
@@ -277,7 +277,7 @@ export default function Home() {
       </section>
 
       {/* Philosophy: Proof of Thinking */}
-      <section className="py-24 md:py-48 px-6 overflow-hidden z-10 relative bg-white/15 backdrop-blur-sm transition-colors duration-1000">
+      <section className="py-24 md:py-48 px-6 overflow-hidden z-10 relative bg-white/15 transition-colors duration-1000">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-12">
             <AnimateReveal variant="slide-up">
@@ -345,7 +345,7 @@ export default function Home() {
       </section>
 
       {/* Footer (Sync with institutional tone) */}
-      <footer className="bg-white/20 backdrop-blur-sm border-t border-slate-100 py-12 px-6 relative z-10 transition-colors duration-1000">
+      <footer className="bg-white/20 border-t border-slate-100 py-12 px-6 relative z-10 transition-colors duration-1000">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="scale-75">
             <motion.div
