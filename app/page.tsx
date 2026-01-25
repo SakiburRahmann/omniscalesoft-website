@@ -103,7 +103,7 @@ export default function Home() {
               <Button size="lg" className="px-12 py-8 text-lg bg-white text-black hover:bg-slate-200 transition-all uppercase font-black tracking-widest" asChild>
                 <Link href="/contact">Start a Project</Link>
               </Button>
-              <Button variant="outline" size="lg" className="px-12 py-8 text-lg border-white/20 text-white hover:bg-white hover:text-black transition-all uppercase font-black tracking-widest" asChild>
+              <Button variant="ghost" size="lg" className="px-12 py-8 text-lg border border-white/40 text-white hover:bg-white hover:text-black transition-all uppercase font-black tracking-widest" asChild>
                 <Link href="/capabilities">Explore Capabilities</Link>
               </Button>
             </RevealItem>
@@ -170,12 +170,8 @@ export default function Home() {
           </AnimateReveal>
 
           <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group">
-            <div className="absolute inset-0 opacity-40 group-hover:opacity-100 transition-opacity duration-700 grayscale group-hover:grayscale-0">
+            <div className="absolute inset-0 opacity-100 transition-opacity duration-700">
               <HyperCore3D theme="light" />
-            </div>
-            <div className="absolute bottom-10 left-10 z-10">
-              <div className="text-[10px] font-black tracking-widest mb-2 opacity-50 uppercase">Architecture Audit</div>
-              <div className="text-black font-bold">Standard: ISO/SRE Hybrid</div>
             </div>
           </div>
         </div>

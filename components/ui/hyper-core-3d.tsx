@@ -68,19 +68,40 @@ function GeometricHub({ color }: { color: string }) {
 
     return (
         <group ref={groupRef}>
-            {/* Central Hub Frames: High contrast in dark mode */}
+            {/* Central Hub Frames: Radiant Glow Manifestation */}
             <group ref={meshRef}>
                 <mesh>
                     <boxGeometry args={[2, 2, 2]} />
-                    <meshStandardMaterial wireframe color={color} transparent opacity={0.2} />
+                    <meshStandardMaterial
+                        wireframe
+                        color={color}
+                        transparent
+                        opacity={0.4}
+                        emissive={color}
+                        emissiveIntensity={0.5}
+                    />
                 </mesh>
                 <mesh rotation={[Math.PI / 4, 0, Math.PI / 4]}>
                     <boxGeometry args={[1.5, 1.5, 1.5]} />
-                    <meshStandardMaterial wireframe color={color} transparent opacity={0.4} />
+                    <meshStandardMaterial
+                        wireframe
+                        color={color}
+                        transparent
+                        opacity={0.6}
+                        emissive={color}
+                        emissiveIntensity={1}
+                    />
                 </mesh>
                 <mesh rotation={[-Math.PI / 4, Math.PI / 2, 0]}>
                     <boxGeometry args={[1, 1, 1]} />
-                    <meshStandardMaterial wireframe color={color} transparent opacity={0.6} />
+                    <meshStandardMaterial
+                        wireframe
+                        color={color}
+                        transparent
+                        opacity={0.8}
+                        emissive={color}
+                        emissiveIntensity={2}
+                    />
                 </mesh>
             </group>
 
@@ -90,7 +111,11 @@ function GeometricHub({ color }: { color: string }) {
                     <Float key={i} speed={v.speed} rotationIntensity={1} floatIntensity={1}>
                         <mesh position={v.position}>
                             <boxGeometry args={[v.size, v.size, v.size]} />
-                            <meshStandardMaterial color={color} />
+                            <meshStandardMaterial
+                                color={color}
+                                emissive={color}
+                                emissiveIntensity={v.size * 10}
+                            />
                         </mesh>
                     </Float>
                 ))}
@@ -98,9 +123,9 @@ function GeometricHub({ color }: { color: string }) {
 
             <AtmosphericParticles count={400} color={color} />
 
-            <ambientLight intensity={color === "white" ? 0.3 : 0.6} />
-            <pointLight position={[10, 10, 10]} intensity={color === "white" ? 4 : 1.5} />
-            <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={color === "white" ? 4 : 1.5} />
+            <ambientLight intensity={color === "white" ? 0.4 : 0.8} />
+            <pointLight position={[10, 10, 10]} intensity={color === "white" ? 6 : 2} />
+            <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={color === "white" ? 6 : 2} />
         </group>
     )
 }
