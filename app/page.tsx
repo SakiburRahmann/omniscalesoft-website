@@ -165,12 +165,12 @@ export default function Home() {
       </div>
 
       {/* Hero Section: Institutional First Impression */}
-      <section className="relative h-screen min-h-[800px] flex items-center bg-black/85 overflow-hidden px-6 z-10">
+      <section className="relative h-screen min-h-[800px] flex items-center bg-black/85 overflow-hidden px-6 z-10 pt-44 md:pt-0">
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          <AnimateReveal variant="slide-up" staggerChildren={0.2}>
+          <AnimateReveal variant="slide-up" staggerChildren={0.4}>
 
-            <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+            <RevealItem className="font-serif text-3xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
               <motion.span
                 whileInView={{ y: [0, -5, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -294,8 +294,8 @@ export default function Home() {
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{
-                  duration: 0.8,
-                  delay: i * 0.2,
+                  duration: 1.5,
+                  delay: i * 0.4,
                   ease: [0.16, 1, 0.3, 1]
                 }}
               >
