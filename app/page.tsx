@@ -288,22 +288,34 @@ export default function Home() {
                 )
               }
             ].map((s, i) => (
-              <PerspectiveCard key={i} className="bg-white p-12 md:p-20 group hover:bg-slate-100">
-                <div className="mb-8 transition-transform group-hover:scale-110 duration-500">
-                  {s.icon}
-                </div>
-                <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">
-                  <motion.span
-                    whileInView={{ x: [0, 3, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
-                    className="inline-block will-change-transform"
-                  >
-                    {s.title}
-                  </motion.span>
-                </h3>
-                <p className="text-xl text-slate-500 font-medium leading-relaxed">{s.desc}</p>
-                <div className="mt-8 h-px w-0 bg-black group-hover:w-full transition-all duration-700" />
-              </PerspectiveCard>
+              <motion.div
+                key={i}
+                initial={{ x: i % 2 === 0 ? -100 : 100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.2,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+              >
+                <PerspectiveCard className="bg-white p-12 md:p-20 group hover:bg-slate-100 h-full">
+                  <div className="mb-8 transition-transform group-hover:scale-110 duration-500">
+                    {s.icon}
+                  </div>
+                  <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">
+                    <motion.span
+                      whileInView={{ x: [0, 3, 0] }}
+                      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+                      className="inline-block will-change-transform"
+                    >
+                      {s.title}
+                    </motion.span>
+                  </h3>
+                  <p className="text-xl text-slate-500 font-medium leading-relaxed">{s.desc}</p>
+                  <div className="mt-8 h-px w-0 bg-black group-hover:w-full transition-all duration-700" />
+                </PerspectiveCard>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -311,17 +323,17 @@ export default function Home() {
 
       {/* Philosophy: Proof of Thinking */}
       <section className="py-24 md:py-48 px-6 overflow-hidden z-10 relative bg-white/15 transition-colors duration-1000">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="space-y-12">
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-12 text-center md:text-left">
             <AnimateReveal variant="slide-up">
               <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase">Technical Philosophy</span>
               <CinematicText
                 text="Built for Long-Term Impact"
-                className="font-serif text-5xl md:text-7xl leading-[1.0] mb-12"
+                className="font-serif text-5xl md:text-8xl leading-[1.0] mb-12"
               />
             </AnimateReveal>
 
-            <div className="space-y-8 text-xl text-slate-500 font-medium leading-relaxed">
+            <div className="space-y-8 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl">
               <motion.div whileInView={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="will-change-transform">
                 <CinematicText text="At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks." />
               </motion.div>
@@ -332,72 +344,6 @@ export default function Home() {
                 <CinematicText text="This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure." />
               </motion.div>
             </div>
-          </div>
-
-          <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white shadow-2xl overflow-hidden group">
-            <div className="absolute inset-0">
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{
-                    x: `${20 + Math.random() * 60}%`,
-                    y: "110%",
-                    opacity: 0,
-                    scale: 0.5
-                  }}
-                  animate={{
-                    y: "-10%",
-                    opacity: [0, 0.6, 0.6, 0],
-                    x: [
-                      `${20 + Math.random() * 60}%`,
-                      `${10 + Math.random() * 80}%`,
-                      `${30 + Math.random() * 40}%`,
-                      `${20 + Math.random() * 60}%`
-                    ],
-                    scale: [0.5, 1, 0.8]
-                  }}
-                  transition={{
-                    duration: 6 + Math.random() * 4,
-                    delay: i * 0.8,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute w-2 h-2 bg-emerald-500 rounded-full blur-[1px]"
-                />
-              ))}
-              {/* Secondary Layer: Fainter, faster dots */}
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={`faint-${i}`}
-                  initial={{
-                    x: `${10 + Math.random() * 80}%`,
-                    y: "110%",
-                    opacity: 0
-                  }}
-                  animate={{
-                    y: "-10%",
-                    opacity: [0, 0.2, 0],
-                    x: [
-                      `${10 + Math.random() * 80}%`,
-                      `${5 + Math.random() * 90}%`,
-                      `${15 + Math.random() * 70}%`
-                    ]
-                  }}
-                  transition={{
-                    duration: 4 + Math.random() * 3,
-                    delay: i * 1.2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute w-1 h-1 bg-slate-400 rounded-full"
-                />
-              ))}
-            </div>
-            <div className="absolute bottom-12 left-12 z-10">
-              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500">Growth Determinism</span>
-              <div className="mt-4 text-3xl font-serif text-black opacity-40">Infinite<br />Organic Scaling</div>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white pointer-events-none" />
           </div>
         </div>
       </section>
