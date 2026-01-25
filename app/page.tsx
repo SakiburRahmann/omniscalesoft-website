@@ -77,169 +77,137 @@ export default function Home() {
     <main className="min-h-screen bg-white font-sans text-black">
       <LegacyNav />
 
-      {/* Hero Section: The Hyper-Scale Focal Point */}
-      <section className="pt-40 pb-24 md:pt-60 md:pb-40 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Stationary Editorial Text: Maximum Trust */}
-          <AnimateReveal variant="slide-up" staggerChildren={0.15}>
-            <RevealItem className="inline-block bg-black text-white px-3 py-1 text-[10px] font-black tracking-[0.2em] mb-8 uppercase leading-normal">
-              INNOVATION MEETS ENGINEERING
+      {/* Hero Section: Institutional First Impression */}
+      <section className="relative h-screen min-h-[800px] flex items-center bg-black overflow-hidden px-6">
+        {/* Immersive 3D Background */}
+        <div className="absolute inset-0 z-0 opacity-60">
+          <HyperCore3D theme="dark" />
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full relative z-10">
+          <AnimateReveal variant="slide-up" staggerChildren={0.2}>
+            <RevealItem className="text-emerald-500 text-[10px] font-black tracking-[0.3em] mb-8 uppercase flex items-center gap-3">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_#10b981]" />
+              Technical Studio Established 2024
             </RevealItem>
 
-            <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-black mb-10">
-              Engineering <br /> the Future<span className="text-[#000000]">.</span>
+            <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl">
+              We Engineer Software Systems That Scale With Your Business<span className="text-emerald-500">.</span>
             </RevealItem>
 
-            <RevealItem className="text-xl md:text-2xl text-slate-500 font-medium max-w-xl mb-12 leading-relaxed">
-              We build high-performance software for ambitious companies. Precision-engineered, scalable, and designed to win.
+            <RevealItem className="text-xl md:text-2xl text-slate-400 font-medium max-w-2xl mb-14 leading-relaxed">
+              We partner with ambitious teams to design, build, and evolve high-performance digital infrastructure — from idea to global scale.
             </RevealItem>
 
-            <RevealItem className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="px-10">View System Architecture</Button>
-              <Button variant="outline" size="lg" className="px-10">Engineering Capabilities</Button>
+            <RevealItem className="flex flex-col sm:flex-row gap-6">
+              <Button size="lg" className="px-12 py-8 text-lg bg-white text-black hover:bg-slate-200 transition-all uppercase font-black tracking-widest" asChild>
+                <Link href="/contact">Start a Project</Link>
+              </Button>
+              <Button variant="outline" size="lg" className="px-12 py-8 text-lg border-white/20 text-white hover:bg-white hover:text-black transition-all uppercase font-black tracking-widest" asChild>
+                <Link href="/capabilities">Explore Capabilities</Link>
+              </Button>
+            </RevealItem>
+
+            <RevealItem className="mt-20 pt-12 border-t border-white/10 opacity-50">
+              <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Trusted by teams building mission-critical products</span>
+              <div className="mt-6 flex flex-wrap gap-8 grayscale">
+                {partners.slice(0, 4).map(p => <span key={p} className="text-white/40 text-sm font-bold">{p}</span>)}
+              </div>
             </RevealItem>
           </AnimateReveal>
+        </div>
+      </section>
 
-          {/* WebGL 3D Spectacle: Cinematic Visual Machine */}
-          <div className="relative w-full h-[400px] md:h-[600px] lg:h-[800px] overflow-visible order-last">
-            <HyperCore3D />
+      {/* Service Matrix: "What We Actually Do" */}
+      <section className="py-24 md:py-48 px-6 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-px md:bg-slate-100 md:border md:border-slate-100">
+            {[
+              {
+                title: "Strategy",
+                desc: "Product thinking, technical direction, and system planning that eliminates guesswork before engineering begins.",
+                icon: <Search className="w-6 h-6" />
+              },
+              {
+                title: "Engineering",
+                desc: "Robust, secure, and scalable software built with modern architectures and disciplined workflows.",
+                icon: <Hammer className="w-6 h-6" />
+              },
+              {
+                title: "Evolution",
+                desc: "Continuous optimization, performance tuning, and intelligent automation as your product grows.",
+                icon: <TrendingUp className="w-6 h-6" />
+              }
+            ].map((s, i) => (
+              <AnimateReveal key={i} variant="slide-up" className="bg-white p-12 md:p-20 group hover:bg-slate-50 transition-colors">
+                <div className="mb-8 text-slate-300 group-hover:text-black transition-colors">{s.icon}</div>
+                <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">{s.title}</h3>
+                <p className="text-xl text-slate-500 font-medium leading-relaxed">{s.desc}</p>
+              </AnimateReveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Trusted By: Recursive Kinetic Proof */}
-      <section className="py-12 border-y border-[#e4e4e7] overflow-hidden grayscale">
-        <AnimateReveal variant="fade" className="max-w-7xl mx-auto px-6 mb-10 text-center text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">
-          Trusted by forward-thinking companies
-        </AnimateReveal>
-        <LogoMarquee items={partners} speed={30} className="px-6" />
-      </section>
-
-      {/* Capabilities: Staggered Architecture */}
-      <section className="py-24 md:py-40 px-6">
-        <div className="max-w-7xl mx-auto">
+      {/* Philosophy: Proof of Thinking */}
+      <section className="py-24 md:py-48 px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <AnimateReveal variant="slide-up">
-            <h2 className="font-serif text-5xl md:text-7xl mb-6">Capabilities</h2>
-            <p className="text-xl md:text-2xl text-slate-500 font-medium mb-24">Comprehensive solutions for modern digital challenges.</p>
-          </AnimateReveal>
-
-          <AnimateReveal variant="slide-up" staggerChildren={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#e4e4e7] border border-[#e4e4e7]">
-            {capabilities.map((item, i) => (
-              <RevealItem key={i} className="bg-white p-12 md:p-16 group hover:bg-slate-50 transition-colors">
-                <h3 className="text-2xl font-bold mb-6 group-hover:text-black transition-colors">{item.title}</h3>
-                <p className="text-lg text-slate-500 font-medium leading-relaxed mb-8">{item.desc}</p>
-                {item.title === "Cloud Native" && (
-                  <div className="mt-4 pt-8 border-t border-slate-100 flex flex-wrap gap-4">
-                    {stack.map(s => <span key={s} className="text-xs font-bold px-3 py-1 bg-slate-100 rounded-full">{s}</span>)}
-                  </div>
-                )}
-              </RevealItem>
-            ))}
-          </AnimateReveal>
-        </div>
-      </section>
-
-      {/* Methodology: Animated Roadmap */}
-      <section className="py-24 md:py-40 px-6 bg-[#fafafa]">
-        <div className="max-w-7xl mx-auto">
-          <AnimateReveal variant="slide-up">
-            <h2 className="font-serif text-5xl md:text-7xl mb-24 leading-tight">The OmniScale Method</h2>
-          </AnimateReveal>
-
-          <AnimateReveal variant="slide-up" staggerChildren={0.2} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {methods.map((m, i) => (
-              <RevealItem key={i} className="relative group">
-                <div className="text-[10rem] font-black text-slate-100 absolute -top-20 -left-6 z-0 leading-none select-none group-hover:text-slate-200 transition-colors duration-500">
-                  {m.num}
-                </div>
-                <div className="relative z-10 pl-2">
-                  <div className="mb-6 group-hover:scale-110 transition-transform duration-300 origin-left">{m.icon}</div>
-                  <h3 className="text-xl font-bold mb-4">{m.title}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{m.desc}</p>
-                </div>
-              </RevealItem>
-            ))}
-          </AnimateReveal>
-        </div>
-      </section>
-
-      {/* Tech Stack: Staggered Elevation */}
-      <section className="py-24 md:py-40 px-6">
-        <AnimateReveal variant="slide-up" className="max-w-7xl mx-auto text-center mb-24">
-          <h2 className="font-serif text-5xl md:text-7xl mb-8">Armed with Elite Tech</h2>
-          <p className="text-xl text-slate-500 font-medium">We use the same tools that power the internet's giants to build your solution.</p>
-        </AnimateReveal>
-
-        <AnimateReveal variant="slide-up" staggerChildren={0.05} className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-          {techStack.map((t, i) => (
-            <RevealItem key={i} className="border border-[#e4e4e7] p-8 rounded-lg group hover:border-black hover:shadow-xl transition-all duration-300">
-              <div className="text-[10px] font-black tracking-widest text-slate-400 mb-2 uppercase group-hover:text-black transition-colors">{t.category}</div>
-              <div className="text-lg font-bold">{t.tech}</div>
-            </RevealItem>
-          ))}
-        </AnimateReveal>
-      </section>
-
-      {/* Footer: Dynamic Audit Status */}
-      <footer className="bg-black text-white pt-32 pb-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <AnimateReveal variant="fade" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-32">
-            <div className="lg:col-span-2">
-              <div className="mb-10 invert">
-                <Logo />
-              </div>
-              <p className="text-slate-400 font-medium text-lg max-w-sm mb-10">
-                Engineering the next generation of digital infrastructure.
+            <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase">Technical Philosophy</span>
+            <h2 className="font-serif text-5xl md:text-7xl mb-12 leading-[1.0]">Built for Long-Term Impact — Not Short-Term Demos<span className="text-emerald-500">.</span></h2>
+            <div className="space-y-8 text-xl text-slate-500 font-medium leading-relaxed">
+              <p>
+                At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks.
               </p>
-              <div className="flex items-center gap-2 text-[10px] font-black tracking-widest text-emerald-500 uppercase">
-                <motion.div
-                  animate={{ opacity: [1, 0.4, 1], scale: [1, 1.3, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.6)]"
-                />
-                All Systems Operational
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-[10px] font-black tracking-widest text-slate-600 uppercase mb-8">Capabilities</h4>
-              <ul className="space-y-4 text-sm font-bold text-slate-400">
-                <li><Link href="/capabilities" className="hover:text-white transition-colors">Product Strategy</Link></li>
-                <li><Link href="/capabilities" className="hover:text-white transition-colors">Full-Stack Engineering</Link></li>
-                <li><Link href="/capabilities" className="hover:text-white transition-colors">AI Integration</Link></li>
-                <li><Link href="/capabilities" className="hover:text-white transition-colors">Cloud Native</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[10px] font-black tracking-widest text-slate-600 uppercase mb-8">Work</h4>
-              <ul className="space-y-4 text-sm font-bold text-slate-400">
-                <li><Link href="/work" className="hover:text-white transition-colors">Fintech Core</Link></li>
-                <li><Link href="/work" className="hover:text-white transition-colors">HealthGuard AI</Link></li>
-                <li><Link href="/work" className="hover:text-white transition-colors">LogisticsPro</Link></li>
-                <li><Link href="/work" className="hover:text-white transition-colors">View All</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-[10px] font-black tracking-widest text-slate-600 uppercase mb-8">Company</h4>
-              <ul className="space-y-4 text-sm font-bold text-slate-400">
-                <li><Link href="/method" className="hover:text-white transition-colors">Methodology</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Legal</Link></li>
-              </ul>
+              <p>
+                Every line of code and architectural decision is weighed against three core metrics:
+                <strong className="text-black"> Maintainability, Security, and Long-term Operational Cost.</strong>
+              </p>
+              <p>
+                This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure.
+              </p>
             </div>
           </AnimateReveal>
 
-          <div className="pt-12 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black tracking-widest text-slate-600 uppercase">
-            <p className="">© 2026 OmniScaleSoft Inc. San Francisco · Dhaka.</p>
-            <div className="flex gap-8">
-              <Link href="#" className="hover:text-white transition-colors">LinkedIn</Link>
-              <Link href="#" className="hover:text-white transition-colors">GitHub</Link>
-              <Link href="#" className="hover:text-white transition-colors">X (Twitter)</Link>
+          <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group">
+            <div className="absolute inset-0 opacity-40 group-hover:opacity-100 transition-opacity duration-700 grayscale group-hover:grayscale-0">
+              <HyperCore3D theme="light" />
+            </div>
+            <div className="absolute bottom-10 left-10 z-10">
+              <div className="text-[10px] font-black tracking-widest mb-2 opacity-50 uppercase">Architecture Audit</div>
+              <div className="text-black font-bold">Standard: ISO/SRE Hybrid</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Transition CTA */}
+      <section className="py-24 md:py-40 px-6 bg-black text-white text-center">
+        <div className="max-w-3xl mx-auto">
+          <AnimateReveal variant="slide-up">
+            <h2 className="font-serif text-4xl md:text-6xl mb-12">Have a complex idea? <br />Let&apos;s talk about it.</h2>
+            <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
+              <Link href="/contact">Establish Connection</Link>
+            </Button>
+          </AnimateReveal>
+        </div>
+      </section>
+
+      {/* Footer (Sync with institutional tone) */}
+      <footer className="bg-white border-t border-slate-100 py-12 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="scale-75">
+            <Logo />
+          </div>
+          <div className="flex gap-8 text-[10px] font-black tracking-widest text-slate-400 uppercase">
+            <Link href="/capabilities" className="hover:text-black transition-colors">Capabilities</Link>
+            <Link href="/work" className="hover:text-black transition-colors">Work</Link>
+            <Link href="/method" className="hover:text-black transition-colors">Method</Link>
+            <Link href="/contact" className="hover:text-black transition-colors">Contact</Link>
+          </div>
+          <p className="text-[10px] font-black tracking-widest text-slate-400 uppercase whitespace-nowrap">
+            © 2026 OmniScaleSoft · Systems Architecture Bureau
+          </p>
         </div>
       </footer>
     </main>
