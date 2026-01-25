@@ -19,7 +19,7 @@ export function HyperCore3D({ theme = "dark" }: { theme?: "light" | "dark" }) {
 
     return (
         <div className="w-full h-full relative">
-            <Canvas shadows dpr={[1, 2]}>
+            <Canvas dpr={[1, 2]}>
                 <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={35} />
                 <GeometricHub color={color} />
                 {/* Extremely slow autonomous orbit for a 'calm' atmosphere */}
@@ -36,6 +36,9 @@ function GeometricHub({ color }: { color: string }) {
     // Interaction tracking
     const activeFactor = useRef(0)
     const lastMouse = useRef(new THREE.Vector2(0, 0))
+
+    // Performance: Cache material references to avoid per-frame search/type-check
+    const materialRefs = useRef<THREE.MeshStandardMaterial[]>([])
 
     const { mouse } = useThree()
 
@@ -59,16 +62,27 @@ function GeometricHub({ color }: { color: string }) {
         groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.3, 0.1)
         groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.y * 0.3, 0.1)
 
-        // Dynamic Glow Modulation (Modulating uniform material properties)
-        meshRef.current.children.forEach((child, i) => {
-            if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial) {
-                const baseOpacity = [0.1, 0.2, 0.3][i] || 0.1
-                const baseEmissive = [0.1, 0.2, 0.4][i] || 0.1
-                child.material.opacity = THREE.MathUtils.lerp(baseOpacity, baseOpacity * 2.5, activeFactor.current)
-                child.material.emissiveIntensity = THREE.MathUtils.lerp(baseEmissive, baseEmissive * 8, activeFactor.current)
-            }
+        // Optimized Glow Modulation (Using cached material refs)
+        materialRefs.current.forEach((mat, i) => {
+            const baseOpacity = [0.1, 0.2, 0.3][i] || 0.1
+            const baseEmissive = [0.1, 0.2, 0.4][i] || 0.1
+            mat.opacity = THREE.MathUtils.lerp(baseOpacity, baseOpacity * 2.5, activeFactor.current)
+            mat.emissiveIntensity = THREE.MathUtils.lerp(baseEmissive, baseEmissive * 8, activeFactor.current)
         })
     })
+
+    // Initialization: Populate material cache
+    const materials = useMemo(() => {
+        return [
+            new THREE.MeshStandardMaterial({ wireframe: true, color, transparent: true, opacity: 0.1, emissive: color, emissiveIntensity: 0.1 }),
+            new THREE.MeshStandardMaterial({ wireframe: true, color, transparent: true, opacity: 0.2, emissive: color, emissiveIntensity: 0.2 }),
+            new THREE.MeshStandardMaterial({ wireframe: true, color, transparent: true, opacity: 0.3, emissive: color, emissiveIntensity: 0.4 })
+        ]
+    }, [color])
+
+    React.useEffect(() => {
+        materialRefs.current = materials
+    }, [materials])
 
     // Procedural voxel positions
     const voxels = useMemo(() => {
@@ -91,38 +105,14 @@ function GeometricHub({ color }: { color: string }) {
         <group ref={groupRef}>
             {/* Central Hub Frames: Radiant Glow Manifestation */}
             <group ref={meshRef}>
-                <mesh>
+                <mesh material={materials[0]}>
                     <boxGeometry args={[2, 2, 2]} />
-                    <meshStandardMaterial
-                        wireframe
-                        color={color}
-                        transparent
-                        opacity={0.1}
-                        emissive={color}
-                        emissiveIntensity={0.1}
-                    />
                 </mesh>
-                <mesh rotation={[Math.PI / 4, 0, Math.PI / 4]}>
+                <mesh rotation={[Math.PI / 4, 0, Math.PI / 4]} material={materials[1]}>
                     <boxGeometry args={[1.5, 1.5, 1.5]} />
-                    <meshStandardMaterial
-                        wireframe
-                        color={color}
-                        transparent
-                        opacity={0.2}
-                        emissive={color}
-                        emissiveIntensity={0.2}
-                    />
                 </mesh>
-                <mesh rotation={[-Math.PI / 4, Math.PI / 2, 0]}>
+                <mesh rotation={[-Math.PI / 4, Math.PI / 2, 0]} material={materials[2]}>
                     <boxGeometry args={[1, 1, 1]} />
-                    <meshStandardMaterial
-                        wireframe
-                        color={color}
-                        transparent
-                        opacity={0.3}
-                        emissive={color}
-                        emissiveIntensity={0.4}
-                    />
                 </mesh>
             </group>
 

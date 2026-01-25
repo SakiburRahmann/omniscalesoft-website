@@ -161,16 +161,16 @@ export default function Home() {
               <motion.span
                 animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.2, 1] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_15px_#10b981]"
+                className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_15px_#10b981] will-change-transform"
               />
               <span className="text-emerald-500 text-[10px] font-black tracking-[0.4em] uppercase">Architecture Intelligence</span>
             </RevealItem>
 
             <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl">
               <motion.span
-                animate={{ y: [0, -5, 0] }}
+                whileInView={{ y: [0, -5, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="inline-block"
+                className="inline-block will-change-transform"
               >
                 We Engineer Software Systems That Scale With Your Business<span className="text-emerald-500">.</span>
               </motion.span>
@@ -178,8 +178,9 @@ export default function Home() {
 
             <RevealItem className="text-xl md:text-2xl text-slate-400 font-medium max-w-2xl mb-14 leading-relaxed">
               <motion.p
-                animate={{ opacity: [0.7, 1, 0.7] }}
+                whileInView={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="will-change-opacity"
               >
                 We partner with ambitious teams to design, build, and evolve high-performance digital infrastructure — from idea to global scale.
               </motion.p>
@@ -187,16 +188,18 @@ export default function Home() {
 
             <RevealItem className="flex flex-col sm:flex-row gap-6">
               <motion.div
-                animate={{ y: [0, -4, 0] }}
+                whileInView={{ y: [0, -4, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="will-change-transform"
               >
                 <Button size="lg" className="px-12 py-8 text-lg bg-white text-black hover:bg-slate-200 transition-all uppercase font-black tracking-widest shadow-xl" asChild>
                   <Link href="/contact">Start a Project</Link>
                 </Button>
               </motion.div>
               <motion.div
-                animate={{ y: [0, -4, 0] }}
+                whileInView={{ y: [0, -4, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="will-change-transform"
               >
                 <Button variant="ghost" size="lg" className="px-12 py-8 text-lg border border-white/40 text-white hover:bg-white hover:text-black transition-all uppercase font-black tracking-widest" asChild>
                   <Link href="/capabilities">Explore Capabilities</Link>
@@ -210,9 +213,9 @@ export default function Home() {
                 {partners.slice(0, 4).map(p => (
                   <motion.span
                     key={p}
-                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    whileInView={{ opacity: [0.4, 1, 0.4] }}
                     transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="text-white/40 text-sm font-bold"
+                    className="text-white/40 text-sm font-bold will-change-opacity"
                   >
                     {p}
                   </motion.span>
@@ -246,16 +249,17 @@ export default function Home() {
             ].map((s, i) => (
               <PerspectiveCard key={i} className="bg-white p-12 md:p-20 group hover:bg-slate-50">
                 <motion.div
-                  animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                  whileInView={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
                   transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
-                  className="mb-8 text-slate-300 group-hover:text-black transition-colors"
+                  className="mb-8 text-slate-300 group-hover:text-black transition-colors will-change-transform"
                 >
                   {s.icon}
                 </motion.div>
                 <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">
                   <motion.span
-                    animate={{ x: [0, 3, 0] }}
+                    whileInView={{ x: [0, 3, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+                    className="inline-block will-change-transform"
                   >
                     {s.title}
                   </motion.span>
@@ -281,22 +285,22 @@ export default function Home() {
             </AnimateReveal>
 
             <div className="space-y-8 text-xl text-slate-500 font-medium leading-relaxed">
-              <motion.div animate={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+              <motion.div whileInView={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="will-change-transform">
                 <CinematicText text="At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks." />
               </motion.div>
-              <motion.div animate={{ x: [2, -2, 2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
+              <motion.div whileInView={{ x: [2, -2, 2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="will-change-transform">
                 <CinematicText text="Every line of code and architectural decision is weighed against three core metrics: Maintainability, Security, and Long-term Operational Cost." />
               </motion.div>
-              <motion.div animate={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
+              <motion.div whileInView={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }} className="will-change-transform">
                 <CinematicText text="This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure." />
               </motion.div>
             </div>
           </div>
 
           <motion.div
-            animate={{ scale: [1, 1.02, 1], rotate: [0, 0.5, 0] }}
+            whileInView={{ scale: [1, 1.02, 1], rotate: [0, 0.5, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white/5 rounded-2xl overflow-hidden group shadow-2xl"
+            className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white/5 rounded-2xl overflow-hidden group shadow-2xl will-change-transform"
           />
         </div>
       </section>
@@ -305,17 +309,18 @@ export default function Home() {
       <section className="py-24 md:py-40 px-6 bg-black/90 text-white text-center relative overflow-hidden z-10 transition-colors duration-1000">
         {/* Background Ambient Glow */}
         <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          whileInView={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 bg-emerald-500/5 blur-[120px]"
+          className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none will-change-transform"
         />
 
         <div className="max-w-3xl mx-auto relative z-10">
           <AnimateReveal variant="slide-up">
             <h2 className="font-serif text-4xl md:text-6xl mb-12">
               <motion.span
-                animate={{ opacity: [0.8, 1, 0.8] }}
+                whileInView={{ opacity: [0.8, 1, 0.8] }}
                 transition={{ duration: 4, repeat: Infinity }}
+                className="will-change-opacity"
               >
                 Have a complex idea? <br />Let&apos;s talk about it.
               </motion.span>
@@ -323,8 +328,9 @@ export default function Home() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              animate={{ y: [0, -10, 0] }}
+              whileInView={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="will-change-transform"
             >
               <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
                 <Link href="/contact">Establish Connection</Link>
@@ -335,12 +341,13 @@ export default function Home() {
       </section>
 
       {/* Footer (Sync with institutional tone) */}
-      <footer className="bg-white/95 backdrop-blur-md border-t border-slate-100 py-12 px-6 relative z-10">
+      <footer className="bg-white/95 backdrop-blur-sm border-t border-slate-100 py-12 px-6 relative z-10 transition-colors duration-1000">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="scale-75">
             <motion.div
-              animate={{ opacity: [0.8, 1, 0.8] }}
+              whileInView={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 5, repeat: Infinity }}
+              className="will-change-opacity"
             >
               <Logo />
             </motion.div>
@@ -354,8 +361,9 @@ export default function Home() {
             ].map((link, i) => (
               <motion.div
                 key={link.label}
-                animate={{ y: [0, -2, 0] }}
+                whileInView={{ y: [0, -2, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
+                className="will-change-transform"
               >
                 <Link href={link.href} className="hover:text-black transition-colors">{link.label}</Link>
               </motion.div>
