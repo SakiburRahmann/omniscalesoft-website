@@ -2,7 +2,7 @@
 
 import React, { useRef, useMemo, useState, useEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { Float, PerspectiveCamera, OrbitControls, Line, Sparkles, MeshDistortMaterial } from "@react-three/drei"
+import { Float, PerspectiveCamera, OrbitControls, Line, Sparkles, MeshDistortMaterial, Text } from "@react-three/drei"
 import * as THREE from "three"
 
 function EnergyPulse({ start, end, onComplete }: { start: THREE.Vector3, end: THREE.Vector3, onComplete: () => void }) {

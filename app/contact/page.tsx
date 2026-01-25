@@ -1,5 +1,10 @@
+"use client"
+
+import React, { useState } from "react"
+import { LegacyNav } from "@/components/layout/legacy-nav"
+import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
+import { Button } from "@/components/ui/button"
 import { ConnectionSignal3D } from "@/components/ui/connection-signal-3d"
-import { useState } from "react"
 
 export default function Contact() {
     const [isTyping, setIsTyping] = useState(false)

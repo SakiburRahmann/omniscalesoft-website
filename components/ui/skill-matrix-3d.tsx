@@ -6,18 +6,40 @@ import { Float, PerspectiveCamera, OrbitControls, Line, Text, MeshDistortMateria
 import * as THREE from "three"
 
 const SKILLS = [
-    { name: "AI / ML", pos: [4, 3, -1], color: "black" },
-    { name: "Cloud Architecture", pos: [-4, -2, 2], color: "black" },
-    { name: "Full-Stack Eng", pos: [2, -4, -3], color: "black" },
-    { name: "CyberSecurity", pos: [-3, 4, -2], color: "black" },
-    { name: "Venture Studio", pos: [5, -1, 3], color: "black" },
+    {
+        name: "AI / ML",
+        pos: [4, 3, -1],
+        subs: ["Neural Nets", "RAG", "LLM Ops"]
+    },
+    {
+        name: "Cloud Architecture",
+        pos: [-4, -2, 2],
+        subs: ["AWS/GCP", "Kubernetes", "SRE"]
+    },
+    {
+        name: "Full-Stack Eng",
+        pos: [2, -4, -3],
+        subs: ["TypeScript", "Rust", "Next.JS"]
+    },
+    {
+        name: "CyberSecurity",
+        pos: [-3, 4, -2],
+        subs: ["Zero Trust", "IAM", "Pentesting"]
+    },
+    {
+        name: "Venture Studio",
+        pos: [5, -1, 3],
+        subs: ["Strategy", "MVPs", "Funding"]
+    },
 ]
 
-function SkillNode({ name, position, color, onSelect }: {
+function SkillNode({ name, position, color, subs, onSelect, isSelected }: {
     name: string,
     position: [number, number, number],
     color: string,
-    onSelect: () => void
+    subs: string[],
+    onSelect: () => void,
+    isSelected: boolean
 }) {
     const ref = useRef<THREE.Group>(null!)
     const [hovered, setHovered] = useState(false)
@@ -33,21 +55,20 @@ function SkillNode({ name, position, color, onSelect }: {
             position={position}
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
-            onClick={onSelect}
+            onClick={(e) => {
+                e.stopPropagation()
+                onSelect()
+            }}
         >
             <mesh>
                 <sphereGeometry args={[0.5, 32, 32]} />
                 <meshStandardMaterial
-                    color={hovered ? "#000" : "#fff"}
-                    emissive={hovered ? "black" : "white"}
-                    emissiveIntensity={hovered ? 2 : 0.2}
+                    color={hovered || isSelected ? "#000" : "#fff"}
+                    emissive={hovered || isSelected ? "black" : "white"}
+                    emissiveIntensity={hovered || isSelected ? 2 : 0.2}
                     transparent
                     opacity={0.8}
                 />
-            </mesh>
-            <mesh scale={1.1}>
-                <sphereGeometry args={[0.5, 32, 32]} />
-                <meshStandardMaterial wireframe color="black" transparent opacity={0.2} />
             </mesh>
 
             <Text
@@ -56,10 +77,34 @@ function SkillNode({ name, position, color, onSelect }: {
                 color="black"
                 anchorX="center"
                 anchorY="middle"
-                font="/fonts/Geist-Bold.ttf"
             >
                 {name}
             </Text>
+
+            {/* Sub-capabilities (Manifested on Zoom) */}
+            {isSelected && subs.map((sub, i) => (
+                <Float key={i} speed={2}>
+                    <Text
+                        position={[
+                            Math.cos(i * 2) * 1.5,
+                            Math.sin(i * 2) * 1.5,
+                            0
+                        ]}
+                        fontSize={0.15}
+                        color="black"
+                        fillOpacity={0.8}
+                    >
+                        {sub}
+                    </Text>
+                    <Line
+                        points={[[0, 0, 0], [Math.cos(i * 2) * 1, Math.sin(i * 2) * 1, 0]]}
+                        color="black"
+                        lineWidth={0.5}
+                        transparent
+                        opacity={0.2}
+                    />
+                </Float>
+            ))}
 
             {/* Neural Connection to Core */}
             <Line
@@ -77,7 +122,7 @@ function MatrixEngine() {
     const groupRef = useRef<THREE.Group>(null!)
     const coreRef = useRef<THREE.Mesh>(null!)
     const { camera, mouse } = useThree()
-    const [targetZoom, setTargetZoom] = useState<THREE.Vector3 | null>(null)
+    const [selectedIdx, setSelectedIdx] = useState<number | null>(null)
 
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
@@ -91,8 +136,10 @@ function MatrixEngine() {
         groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.y * 0.3, 0.05)
 
         // Cinematic Zoom logic
-        if (targetZoom) {
-            camera.position.lerp(targetZoom.clone().add(new THREE.Vector3(0, 0, 3)), 0.05)
+        if (selectedIdx !== null) {
+            const target = new THREE.Vector3(...SKILLS[selectedIdx].pos)
+            camera.position.lerp(target.clone().add(new THREE.Vector3(0, 0, 4)), 0.05)
+            camera.lookAt(target)
         } else {
             camera.position.lerp(new THREE.Vector3(0, 0, 12), 0.05)
         }
@@ -101,7 +148,7 @@ function MatrixEngine() {
     return (
         <group ref={groupRef}>
             {/* The Company Engine Core */}
-            <mesh ref={coreRef} onClick={() => setTargetZoom(null)}>
+            <mesh ref={coreRef} onClick={() => setSelectedIdx(null)}>
                 <octahedronGeometry args={[1.8, 0]} />
                 <MeshDistortMaterial color="black" speed={2} distort={0.2} transparent opacity={0.5} />
             </mesh>
@@ -115,13 +162,16 @@ function MatrixEngine() {
                 <SkillNode
                     key={i}
                     {...skill}
+                    color="black"
                     position={skill.pos as [number, number, number]}
-                    onSelect={() => setTargetZoom(new THREE.Vector3(...skill.pos))}
+                    subs={skill.subs}
+                    onSelect={() => setSelectedIdx(i)}
+                    isSelected={selectedIdx === i}
                 />
             ))}
 
-            <ambientLight intensity={0.8} />
-            <pointLight position={[10, 10, 10]} intensity={2} />
+            <ambientLight intensity={1} />
+            <pointLight position={[10, 10, 10]} intensity={3} />
         </group>
     )
 }
