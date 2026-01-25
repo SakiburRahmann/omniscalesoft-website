@@ -146,12 +146,13 @@ export default function Home() {
     <main className="min-h-screen bg-white font-sans text-black">
       <LegacyNav theme="hero" />
 
+      {/* Persistent Global 3D Spectacle */}
+      <div className="fixed inset-0 z-0 opacity-60 pointer-events-none">
+        <HyperCore3D theme="dark" />
+      </div>
+
       {/* Hero Section: Institutional First Impression */}
-      <section className="relative h-screen min-h-[800px] flex items-center bg-black overflow-hidden px-6">
-        {/* Immersive 3D Background */}
-        <div className="absolute inset-0 z-0 opacity-60">
-          <HyperCore3D theme="dark" />
-        </div>
+      <section className="relative h-screen min-h-[800px] flex items-center bg-black/40 overflow-hidden px-6 z-10">
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <AnimateReveal variant="slide-up" staggerChildren={0.2}>
@@ -223,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* Service Matrix: "What We Actually Do" */}
-      <section className="py-24 md:py-48 px-6 bg-white border-b border-slate-100">
+      <section className="py-24 md:py-48 px-6 bg-white/80 backdrop-blur-md border-b border-slate-100 z-10 relative transition-colors duration-1000">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-px md:bg-slate-100 md:border md:border-slate-100">
             {[
@@ -268,7 +269,7 @@ export default function Home() {
       </section>
 
       {/* Philosophy: Proof of Thinking */}
-      <section className="py-24 md:py-48 px-6 overflow-hidden">
+      <section className="py-24 md:py-48 px-6 overflow-hidden z-10 relative bg-white/70 backdrop-blur-lg transition-colors duration-1000">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="space-y-12">
             <AnimateReveal variant="slide-up">
@@ -295,17 +296,13 @@ export default function Home() {
           <motion.div
             animate={{ scale: [1, 1.02, 1], rotate: [0, 0.5, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group shadow-2xl"
-          >
-            <div className="absolute inset-0 opacity-100 transition-opacity duration-700">
-              <HyperCore3D theme="light" />
-            </div>
-          </motion.div>
+            className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white/5 rounded-2xl overflow-hidden group shadow-2xl"
+          />
         </div>
       </section>
 
       {/* Transition CTA */}
-      <section className="py-24 md:py-40 px-6 bg-black text-white text-center relative overflow-hidden">
+      <section className="py-24 md:py-40 px-6 bg-black/90 text-white text-center relative overflow-hidden z-10 transition-colors duration-1000">
         {/* Background Ambient Glow */}
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
@@ -338,7 +335,7 @@ export default function Home() {
       </section>
 
       {/* Footer (Sync with institutional tone) */}
-      <footer className="bg-white border-t border-slate-100 py-12 px-6">
+      <footer className="bg-white/95 backdrop-blur-md border-t border-slate-100 py-12 px-6 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="scale-75">
             <motion.div
