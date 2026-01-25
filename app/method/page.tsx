@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { motion } from "framer-motion"
-import { ProductionFlow3D } from "@/components/ui/production-flow-3d"
+import { ProcessMachine3D } from "@/components/ui/process-machine-3d"
 
 const methods = [
     {
@@ -48,18 +48,33 @@ export default function Method() {
         <main className="min-h-screen bg-white font-sans text-black">
             <LegacyNav />
 
-            <section className="pt-40 pb-24 md:pt-60 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+            {/* Immersive 3D Process Corridor */}
+            <section className="h-screen w-full relative overflow-hidden bg-white">
+                <ProcessMachine3D />
+                <div className="absolute inset-0 pointer-events-none flex flex-col justify-center px-6">
+                    <div className="max-w-7xl mx-auto w-full">
                         <AnimateReveal variant="slide-up">
-                            <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] mb-12 leading-[0.9]">Methodology<span className="text-[#000000]">.</span></h1>
+                            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-[0.9]">The Delivery <br />Engine<span className="text-[#000000]">.</span></h1>
+                            <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-xl leading-relaxed">
+                                A systematic, engineered approach to high-stakes product delivery. Scroll to observe the pipeline stages.
+                            </p>
+                        </AnimateReveal>
+                    </div>
+                </div>
+            </section>
+
+            <section className="py-24 md:py-40 px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32 hidden">
+                        <AnimateReveal variant="slide-up">
+                            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-12 leading-[0.9]">Methodology<span className="text-[#000000]">.</span></h1>
                             <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-3xl leading-relaxed">
                                 A transparent, engineering-led process designed to mitigate risk and maximize ROI.
                             </p>
                         </AnimateReveal>
 
                         <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
-                            <ProductionFlow3D />
+                            <ProcessMachine3D />
                         </div>
                     </div>
 

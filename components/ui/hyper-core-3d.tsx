@@ -1,13 +1,15 @@
 "use client"
 
 import React, { useRef, useMemo } from "react"
-import { Canvas, useFrame } from "@react-three/fiber"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Float, PerspectiveCamera, OrbitControls, Points, PointMaterial } from "@react-three/drei"
 import * as THREE from "three"
 
 function GeometricHub() {
     const meshRef = useRef<THREE.Group>(null!)
     const voxelRef = useRef<THREE.Group>(null!)
+    const groupRef = useRef<THREE.Group>(null!)
+    const { mouse } = useThree()
 
     useFrame((state) => {
         const t = state.clock.getElapsedTime()
@@ -15,6 +17,10 @@ function GeometricHub() {
         meshRef.current.rotation.x = t * 0.1
         voxelRef.current.rotation.y = -t * 0.15
         voxelRef.current.rotation.z = t * 0.05
+
+        // Hover parallax effect
+        groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.4, 0.1)
+        groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouse.y * 0.4, 0.1)
     })
 
     // Procedural voxel positions
@@ -35,20 +41,20 @@ function GeometricHub() {
     }, [])
 
     return (
-        <group>
+        <group ref={groupRef}>
             {/* Central Hub Frames */}
             <group ref={meshRef}>
                 <mesh>
                     <boxGeometry args={[2, 2, 2]} />
-                    <meshStandardMaterial wireframe color="black" transparent opacity={0.1} />
+                    <meshStandardMaterial wireframe color="black" transparent opacity={0.15} />
                 </mesh>
                 <mesh rotation={[Math.PI / 4, 0, Math.PI / 4]}>
                     <boxGeometry args={[1.5, 1.5, 1.5]} />
-                    <meshStandardMaterial wireframe color="black" transparent opacity={0.2} />
+                    <meshStandardMaterial wireframe color="black" transparent opacity={0.3} />
                 </mesh>
                 <mesh rotation={[-Math.PI / 4, Math.PI / 2, 0]}>
                     <boxGeometry args={[1, 1, 1]} />
-                    <meshStandardMaterial wireframe color="black" transparent opacity={0.4} />
+                    <meshStandardMaterial wireframe color="black" transparent opacity={0.5} />
                 </mesh>
             </group>
 
@@ -67,9 +73,9 @@ function GeometricHub() {
             {/* Atmospheric Particle Field (Drei Points for Type Safety) */}
             <AtmosphericParticles count={500} />
 
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
+            <ambientLight intensity={0.6} />
+            <pointLight position={[10, 10, 10]} intensity={1.5} />
+            <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} intensity={1.5} />
         </group>
     )
 }

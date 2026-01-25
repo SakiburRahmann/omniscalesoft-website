@@ -3,7 +3,7 @@
 import React from "react"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
-import { CapabilityEngine3D } from "@/components/ui/capability-engine-3d"
+import { SkillMatrix3D } from "@/components/ui/skill-matrix-3d"
 
 const caps = [
     {
@@ -37,15 +37,15 @@ export default function Capabilities() {
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
                         <AnimateReveal variant="slide-up">
-                            <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] mb-12 leading-[0.9]">Capabilities<span className="text-[#000000]">.</span></h1>
+                            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-12 leading-[0.9]">Capabilities<span className="text-[#000000]">.</span></h1>
                             <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-xl leading-relaxed">
                                 We operate at the intersection of Strategy, Design, and Engineering. Our multidisciplinary teams build products that define categories.
                             </p>
                         </AnimateReveal>
 
-                        {/* Sub-page 3D Focal Point: The Capability Engine */}
-                        <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible grayscale opacity-50 hover:opacity-100 transition-opacity duration-1000">
-                            <CapabilityEngine3D />
+                        {/* Sub-page 3D Focal Point: The Skill Matrix */}
+                        <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible">
+                            <SkillMatrix3D />
                         </div>
                     </div>
 

@@ -1,47 +1,58 @@
-"use client"
-
-import React from "react"
-import { LegacyNav } from "@/components/layout/legacy-nav"
-import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
-import { Button } from "@/components/ui/button"
-
-import { ConnectivityBeacon3D } from "@/components/ui/connectivity-beacon-3d"
+import { ConnectionSignal3D } from "@/components/ui/connection-signal-3d"
+import { useState } from "react"
 
 export default function Contact() {
+    const [isTyping, setIsTyping] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        setIsSubmitted(true)
+        setTimeout(() => setIsSubmitted(false), 3000)
+    }
+
     return (
         <main className="min-h-screen bg-white font-sans text-black">
             <LegacyNav />
 
-            <section className="pt-40 pb-24 md:pt-60 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
+            {/* Immersive Connection Header */}
+            <section className="h-screen w-full relative overflow-hidden bg-white">
+                <ConnectionSignal3D isTyping={isTyping} isSubmitted={isSubmitted} />
+                <div className="absolute inset-0 pointer-events-none flex flex-col justify-center px-6">
+                    <div className="max-w-7xl mx-auto w-full">
                         <AnimateReveal variant="slide-up">
-                            <h1 className="font-serif text-6xl md:text-8xl lg:text-[10rem] leading-[0.9]">Inquiry<span className="text-[#000000]">.</span></h1>
+                            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-[0.9]">Start the <br />Connection<span className="text-[#000000]">.</span></h1>
                         </AnimateReveal>
-
-                        <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
-                            <ConnectivityBeacon3D />
-                        </div>
                     </div>
+                </div>
+            </section>
 
-                    <AnimateReveal variant="slide-up" staggerChildren={0.25} className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#e4e4e7] border border-[#e4e4e7]">
-                        <RevealItem className="bg-white p-12 md:p-20 flex flex-col items-start hover:bg-slate-50 transition-colors">
-                            <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-8">For Clients</span>
-                            <h2 className="text-4xl font-bold mb-8 uppercase tracking-tight">Project Inquiry</h2>
-                            <p className="text-xl text-slate-500 font-medium leading-relaxed mb-12">
-                                We work with Series B+ startups and Enterprise teams to build mission-critical infrastructure.
-                            </p>
-                            <Button size="lg" className="w-full md:w-auto uppercase px-10">Inquire Now</Button>
-                        </RevealItem>
-
-                        <RevealItem className="bg-white p-12 md:p-20 flex flex-col items-start hover:bg-slate-50 transition-colors">
-                            <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase mb-8">For Talent</span>
-                            <h2 className="text-4xl font-bold mb-8 uppercase tracking-tight">Engineering Careers</h2>
-                            <p className="text-xl text-slate-500 font-medium leading-relaxed mb-12">
-                                We are always looking for exceptional engineers who obsess over performance and quality.
-                            </p>
-                            <Button variant="outline" size="lg" className="w-full md:w-auto uppercase px-10">View Openings</Button>
-                        </RevealItem>
+            <section className="py-24 md:py-40 px-6">
+                <div className="max-w-3xl mx-auto">
+                    <AnimateReveal variant="slide-up">
+                        <form onSubmit={handleSubmit} className="space-y-12">
+                            <div className="space-y-4">
+                                <label className="text-[10px] font-black uppercase tracking-[0.2em]">Full Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter your name"
+                                    className="w-full text-2xl font-bold border-b-2 border-slate-100 focus:border-black outline-none pb-4 transition-colors"
+                                    onFocus={() => setIsTyping(true)}
+                                    onBlur={() => setIsTyping(false)}
+                                />
+                            </div>
+                            <div className="space-y-4">
+                                <label className="text-[10px] font-black uppercase tracking-[0.2em]">Inquiry Level</label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Enterprise Re-Architecture"
+                                    className="w-full text-2xl font-bold border-b-2 border-slate-100 focus:border-black outline-none pb-4 transition-colors"
+                                    onFocus={() => setIsTyping(true)}
+                                    onBlur={() => setIsTyping(false)}
+                                />
+                            </div>
+                            <Button size="lg" className="w-full py-8 text-xl uppercase tracking-widest font-black">Transmit Inquiry</Button>
+                        </form>
                     </AnimateReveal>
                 </div>
             </section>

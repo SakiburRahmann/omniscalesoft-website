@@ -86,7 +86,7 @@ export default function Home() {
               INNOVATION MEETS ENGINEERING
             </RevealItem>
 
-            <RevealItem className="font-serif text-6xl md:text-[7rem] lg:text-[8rem] leading-[0.9] text-black mb-10">
+            <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-black mb-10">
               Engineering <br /> the Future<span className="text-[#000000]">.</span>
             </RevealItem>
 

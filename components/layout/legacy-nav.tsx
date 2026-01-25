@@ -31,6 +31,7 @@ export function LegacyNav() {
 
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-10">
+                    <Link href="/" className="text-sm font-bold text-slate-600 hover:text-black transition-colors">Home</Link>
                     <Link href="/capabilities" className="text-sm font-bold text-slate-600 hover:text-black transition-colors">Capabilities</Link>
                     <Link href="/work" className="text-sm font-bold text-slate-600 hover:text-black transition-colors">Work</Link>
                     <Link href="/method" className="text-sm font-bold text-slate-600 hover:text-black transition-colors">Method</Link>
@@ -48,6 +49,7 @@ export function LegacyNav() {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="absolute top-full left-0 right-0 bg-white border-b border-[#e4e4e7] p-6 flex flex-col gap-6 md:hidden shadow-xl">
+                    <Link href="/" onClick={() => setIsOpen(false)} className="text-lg font-bold text-black border-b border-slate-100 pb-2">Home</Link>
                     <Link href="/capabilities" onClick={() => setIsOpen(false)} className="text-lg font-bold text-black border-b border-slate-100 pb-2">Capabilities</Link>
                     <Link href="/work" onClick={() => setIsOpen(false)} className="text-lg font-bold text-black border-b border-slate-100 pb-2">Work</Link>
                     <Link href="/method" onClick={() => setIsOpen(false)} className="text-lg font-bold text-black border-b border-slate-100 pb-2">Method</Link>
