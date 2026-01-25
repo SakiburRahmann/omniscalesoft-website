@@ -165,7 +165,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section: Institutional First Impression */}
-      <section className="relative h-screen min-h-[800px] flex items-center bg-black overflow-hidden px-6 z-10">
+      <section className="relative h-screen min-h-[800px] flex items-center bg-black/85 overflow-hidden px-6 z-10">
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <AnimateReveal variant="slide-up" staggerChildren={0.2}>
@@ -176,7 +176,7 @@ export default function Home() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="inline-block will-change-transform"
               >
-                We Engineer Software Systems That Scale With Your Business<span className="text-emerald-500">.</span>
+                We Engineer Software Systems That Scale With Your Business
               </motion.span>
             </RevealItem>
 
