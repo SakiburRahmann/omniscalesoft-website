@@ -3,7 +3,7 @@
 import React from "react"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
-import { Blueprint3D } from "@/components/ui/blueprint-3d"
+import { CapabilityEngine3D } from "@/components/ui/capability-engine-3d"
 
 const caps = [
     {
@@ -43,9 +43,9 @@ export default function Capabilities() {
                             </p>
                         </AnimateReveal>
 
-                        {/* Sub-page 3D Focal Point: The Blueprint Engine */}
+                        {/* Sub-page 3D Focal Point: The Capability Engine */}
                         <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible grayscale opacity-50 hover:opacity-100 transition-opacity duration-1000">
-                            <Blueprint3D />
+                            <CapabilityEngine3D />
                         </div>
                     </div>
 
