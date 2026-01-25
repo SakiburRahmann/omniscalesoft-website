@@ -240,17 +240,42 @@ export default function Home() {
                 title: "Strategy",
                 desc: "Product thinking, technical direction, and system planning that eliminates guesswork before engineering begins.",
                 icon: (
-                  <div className="relative w-12 h-12 overflow-hidden border border-slate-200 bg-white">
-                    <motion.div
-                      animate={{ y: ["-100%", "100%", "-100%"] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-x-0 h-[2px] bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
-                    />
-                    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-5">
-                      {[...Array(16)].map((_, j) => <div key={j} className="border-[0.5px] border-black" />)}
+                  <div className="relative w-12 h-12 border border-slate-200 bg-white overflow-hidden p-2">
+                    {/* Interconnected Ecosystem */}
+                    <div className="absolute inset-0 p-2">
+                      <svg viewBox="0 0 48 48" className="w-full h-full fill-none">
+                        <motion.path
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: [0, 1, 1, 0] }}
+                          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                          stroke="black"
+                          strokeWidth="0.5"
+                          strokeOpacity="0.2"
+                          d="M10 10 L38 38 M10 38 L38 10 M24 5 L24 43"
+                        />
+                        {[
+                          { cx: 10, cy: 10 }, { cx: 38, cy: 38 },
+                          { cx: 10, cy: 38 }, { cx: 38, cy: 10 },
+                          { cx: 24, cy: 24 }
+                        ].map((node, i) => (
+                          <motion.circle
+                            key={i}
+                            cx={node.cx}
+                            cy={node.cy}
+                            r="1.5"
+                            fill="black"
+                            animate={{
+                              opacity: [0.2, 1, 0.2],
+                              scale: [1, 1.5, 1],
+                              fill: i === 4 ? "#10b981" : "#000"
+                            }}
+                            transition={{ duration: 3, delay: i * 0.4, repeat: Infinity }}
+                          />
+                        ))}
+                      </svg>
                     </div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Search className="w-5 h-5 text-black opacity-40" />
+                    <div className="relative z-10 flex items-center justify-center h-full">
+                      <Search className="w-5 h-5 text-black/60" />
                     </div>
                   </div>
                 )
@@ -259,20 +284,33 @@ export default function Home() {
                 title: "Engineering",
                 desc: "Robust, secure, and scalable software built with modern architectures and disciplined workflows.",
                 icon: (
-                  <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white overflow-hidden">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className="absolute w-8 h-8 border border-emerald-500/20 rounded-sm"
-                    />
-                    <motion.div
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                      className="absolute w-6 h-6 border-[0.5px] border-black opacity-10"
-                    />
-                    <div className="relative z-10">
-                      <Hammer className="w-5 h-5 text-black" />
+                  <div className="relative w-12 h-12 border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
+                    {/* Modular Isometric Assembly */}
+                    <div className="absolute inset-0">
+                      <svg viewBox="0 0 48 48" className="w-full h-full fill-none">
+                        {[0, 1, 2].map((i) => (
+                          <motion.path
+                            key={i}
+                            animate={{
+                              opacity: [0.1, 0.4, 0.1],
+                              scale: [0.8, 1, 0.8],
+                              rotate: [0, 5, 0]
+                            }}
+                            transition={{ duration: 5, delay: i * 0.6, repeat: Infinity }}
+                            stroke="black"
+                            strokeWidth="0.5"
+                            d={i === 0 ? "M24 10 L38 18 L24 26 L10 18 Z" : i === 1 ? "M10 18 L10 32 L24 40 L24 26 Z" : "M38 18 L38 32 L24 40 L24 26 Z"}
+                          />
+                        ))}
+                      </svg>
                     </div>
+                    <motion.div
+                      animate={{ y: [0, -4, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="relative z-10"
+                    >
+                      <Hammer className="w-5 h-5 text-black" />
+                    </motion.div>
                   </div>
                 )
               },
@@ -280,23 +318,38 @@ export default function Home() {
                 title: "Innovation",
                 desc: "Continuous optimization, performance tuning, and intelligent automation as your product grows.",
                 icon: (
-                  <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white overflow-hidden">
+                  <div className="relative w-12 h-12 border border-slate-200 bg-white overflow-hidden flex items-center justify-center">
+                    {/* Radiant Shard Evolution */}
+                    <div className="absolute inset-0">
+                      {[...Array(3)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          animate={{
+                            rotate: [0, 360],
+                            scale: [1, 1.4, 1],
+                            opacity: [0.1, 0.3, 0.1]
+                          }}
+                          transition={{ duration: 10 + i * 2, repeat: Infinity, ease: "linear" }}
+                          className="absolute inset-2 border border-black/5 rounded-full"
+                        />
+                      ))}
+                    </div>
                     <motion.div
                       animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0, 0.3, 0]
+                        rotate: [0, -360],
                       }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute inset-4 bg-emerald-500 rounded-full blur-md"
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-3 border-t border-emerald-500/20 rounded-full"
                     />
                     <motion.div
                       animate={{
-                        scale: [1, 1.2, 1]
+                        scale: [1, 1.2, 1],
+                        opacity: [0.8, 1, 0.8]
                       }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-                      className="absolute inset-2 border-[0.5px] border-emerald-500/10 rounded-full"
-                    />
-                    <TrendingUp className="w-5 h-5 text-black relative z-10" />
+                      transition={{ duration: 4, repeat: Infinity }}
+                    >
+                      <TrendingUp className="w-5 h-5 text-black relative z-10" />
+                    </motion.div>
                   </div>
                 )
               }
