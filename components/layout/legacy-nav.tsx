@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/ui/logo"
 
 export function LegacyNav() {
     const [isOpen, setIsOpen] = useState(false)
@@ -24,8 +25,8 @@ export function LegacyNav() {
             scrolled ? "bg-white/80 backdrop-blur-md border-b border-[#e4e4e7]" : "bg-transparent"
         )}>
             <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-                <Link href="/" className="text-xl font-bold tracking-tight text-black">
-                    OmniScaleSoft
+                <Link href="/">
+                    <Logo />
                 </Link>
 
                 {/* Desktop Links */}
