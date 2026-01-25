@@ -155,32 +155,67 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <AnimateReveal variant="slide-up" staggerChildren={0.2}>
-            <RevealItem className="text-emerald-500 text-[10px] font-black tracking-[0.3em] mb-8 uppercase flex items-center gap-3">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_#10b981]" />
-              Technical Studio Established 2024
+            {/* Autonomous Pulsing Green Node */}
+            <RevealItem className="mb-10 flex items-center gap-3">
+              <motion.span
+                animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.2, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_15px_#10b981]"
+              />
+              <span className="text-emerald-500 text-[10px] font-black tracking-[0.4em] uppercase">Architecture Intelligence</span>
             </RevealItem>
 
             <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl">
-              We Engineer Software Systems That Scale With Your Business<span className="text-emerald-500">.</span>
+              <motion.span
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="inline-block"
+              >
+                We Engineer Software Systems That Scale With Your Business<span className="text-emerald-500">.</span>
+              </motion.span>
             </RevealItem>
 
             <RevealItem className="text-xl md:text-2xl text-slate-400 font-medium max-w-2xl mb-14 leading-relaxed">
-              We partner with ambitious teams to design, build, and evolve high-performance digital infrastructure — from idea to global scale.
+              <motion.p
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                We partner with ambitious teams to design, build, and evolve high-performance digital infrastructure — from idea to global scale.
+              </motion.p>
             </RevealItem>
 
             <RevealItem className="flex flex-col sm:flex-row gap-6">
-              <Button size="lg" className="px-12 py-8 text-lg bg-white text-black hover:bg-slate-200 transition-all uppercase font-black tracking-widest" asChild>
-                <Link href="/contact">Start a Project</Link>
-              </Button>
-              <Button variant="ghost" size="lg" className="px-12 py-8 text-lg border border-white/40 text-white hover:bg-white hover:text-black transition-all uppercase font-black tracking-widest" asChild>
-                <Link href="/capabilities">Explore Capabilities</Link>
-              </Button>
+              <motion.div
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Button size="lg" className="px-12 py-8 text-lg bg-white text-black hover:bg-slate-200 transition-all uppercase font-black tracking-widest shadow-xl" asChild>
+                  <Link href="/contact">Start a Project</Link>
+                </Button>
+              </motion.div>
+              <motion.div
+                animate={{ y: [0, -4, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <Button variant="ghost" size="lg" className="px-12 py-8 text-lg border border-white/40 text-white hover:bg-white hover:text-black transition-all uppercase font-black tracking-widest" asChild>
+                  <Link href="/capabilities">Explore Capabilities</Link>
+                </Button>
+              </motion.div>
             </RevealItem>
 
-            <RevealItem className="mt-20 pt-12 border-t border-white/10 opacity-50">
+            <RevealItem className="mt-20 pt-12 border-t border-white/10 opacity-50 relative overflow-hidden group">
               <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase">Trusted by teams building mission-critical products</span>
               <div className="mt-6 flex flex-wrap gap-8 grayscale">
-                {partners.slice(0, 4).map(p => <span key={p} className="text-white/40 text-sm font-bold">{p}</span>)}
+                {partners.slice(0, 4).map(p => (
+                  <motion.span
+                    key={p}
+                    animate={{ opacity: [0.4, 1, 0.4] }}
+                    transition={{ duration: 3 + Math.random() * 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="text-white/40 text-sm font-bold"
+                  >
+                    {p}
+                  </motion.span>
+                ))}
               </div>
             </RevealItem>
           </AnimateReveal>
@@ -210,13 +245,20 @@ export default function Home() {
             ].map((s, i) => (
               <PerspectiveCard key={i} className="bg-white p-12 md:p-20 group hover:bg-slate-50">
                 <motion.div
-                  initial={{ rotate: 0 }}
-                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  animate={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
+                  transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
                   className="mb-8 text-slate-300 group-hover:text-black transition-colors"
                 >
                   {s.icon}
                 </motion.div>
-                <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">{s.title}</h3>
+                <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">
+                  <motion.span
+                    animate={{ x: [0, 3, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+                  >
+                    {s.title}
+                  </motion.span>
+                </h3>
                 <p className="text-xl text-slate-500 font-medium leading-relaxed">{s.desc}</p>
                 <div className="mt-8 h-px w-0 bg-black group-hover:w-full transition-all duration-700" />
               </PerspectiveCard>
@@ -238,28 +280,54 @@ export default function Home() {
             </AnimateReveal>
 
             <div className="space-y-8 text-xl text-slate-500 font-medium leading-relaxed">
-              <CinematicText text="At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks." />
-              <CinematicText text="Every line of code and architectural decision is weighed against three core metrics: Maintainability, Security, and Long-term Operational Cost." />
-              <CinematicText text="This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure." />
+              <motion.div animate={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+                <CinematicText text="At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks." />
+              </motion.div>
+              <motion.div animate={{ x: [2, -2, 2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}>
+                <CinematicText text="Every line of code and architectural decision is weighed against three core metrics: Maintainability, Security, and Long-term Operational Cost." />
+              </motion.div>
+              <motion.div animate={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}>
+                <CinematicText text="This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure." />
+              </motion.div>
             </div>
           </div>
 
-          <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group shadow-2xl">
+          <motion.div
+            animate={{ scale: [1, 1.02, 1], rotate: [0, 0.5, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group shadow-2xl"
+          >
             <div className="absolute inset-0 opacity-100 transition-opacity duration-700">
               <HyperCore3D theme="light" />
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Transition CTA */}
-      <section className="py-24 md:py-40 px-6 bg-black text-white text-center">
-        <div className="max-w-3xl mx-auto">
+      <section className="py-24 md:py-40 px-6 bg-black text-white text-center relative overflow-hidden">
+        {/* Background Ambient Glow */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute inset-0 bg-emerald-500/5 blur-[120px]"
+        />
+
+        <div className="max-w-3xl mx-auto relative z-10">
           <AnimateReveal variant="slide-up">
-            <h2 className="font-serif text-4xl md:text-6xl mb-12">Have a complex idea? <br />Let&apos;s talk about it.</h2>
+            <h2 className="font-serif text-4xl md:text-6xl mb-12">
+              <motion.span
+                animate={{ opacity: [0.8, 1, 0.8] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              >
+                Have a complex idea? <br />Let&apos;s talk about it.
+              </motion.span>
+            </h2>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
                 <Link href="/contact">Establish Connection</Link>
@@ -273,16 +341,31 @@ export default function Home() {
       <footer className="bg-white border-t border-slate-100 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="scale-75">
-            <Logo />
+            <motion.div
+              animate={{ opacity: [0.8, 1, 0.8] }}
+              transition={{ duration: 5, repeat: Infinity }}
+            >
+              <Logo />
+            </motion.div>
           </div>
           <div className="flex gap-8 text-[10px] font-black tracking-widest text-slate-400 uppercase">
-            <Link href="/capabilities" className="hover:text-black transition-colors">Capabilities</Link>
-            <Link href="/work" className="hover:text-black transition-colors">Work</Link>
-            <Link href="/method" className="hover:text-black transition-colors">Method</Link>
-            <Link href="/contact" className="hover:text-black transition-colors">Contact</Link>
+            {[
+              { href: "/capabilities", label: "Capabilities" },
+              { href: "/work", label: "Work" },
+              { href: "/method", label: "Method" },
+              { href: "/contact", label: "Contact" }
+            ].map((link, i) => (
+              <motion.div
+                key={link.label}
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: i * 0.3 }}
+              >
+                <Link href={link.href} className="hover:text-black transition-colors">{link.label}</Link>
+              </motion.div>
+            ))}
           </div>
           <p className="text-[10px] font-black tracking-widest text-slate-400 uppercase whitespace-nowrap">
-            © 2026 OmniScaleSoft · Systems Architecture Bureau
+            © 2026 OmniScaleSoft
           </p>
         </div>
       </footer>
