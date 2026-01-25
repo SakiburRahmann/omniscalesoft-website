@@ -147,8 +147,8 @@ export default function Home() {
 
   const colorTransform = useTransform(
     scrollY,
-    [0, 600, 2600, 3200],
-    ["#94a3b8", "#000000", "#000000", "#94a3b8"]
+    [0, 600, 1000],
+    ["#94a3b8", "#000000", "#000000"]
   )
 
   useMotionValueEvent(colorTransform, "change", (latest) => {
@@ -238,27 +238,60 @@ export default function Home() {
               {
                 title: "Strategy",
                 desc: "Product thinking, technical direction, and system planning that eliminates guesswork before engineering begins.",
-                icon: <Search className="w-6 h-6" />
+                icon: (
+                  <div className="relative w-12 h-12 overflow-hidden border border-slate-200 bg-white">
+                    <motion.div
+                      animate={{ y: ["-100%", "100%"] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/20 to-transparent"
+                    />
+                    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-10">
+                      {[...Array(16)].map((_, i) => <div key={i} className="border-[0.5px] border-black" />)}
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Search className="w-5 h-5 text-black" />
+                    </div>
+                  </div>
+                )
               },
               {
                 title: "Engineering",
                 desc: "Robust, secure, and scalable software built with modern architectures and disciplined workflows.",
-                icon: <Hammer className="w-6 h-6" />
+                icon: (
+                  <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white">
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1], rotate: [0, 90, 180, 270, 360] }}
+                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-8 h-8 border border-emerald-500/30 rounded-sm"
+                    />
+                    <div className="relative z-10">
+                      <Hammer className="w-5 h-5 text-black" />
+                    </div>
+                  </div>
+                )
               },
               {
-                title: "Evolution",
+                title: "Innovation",
                 desc: "Continuous optimization, performance tuning, and intelligent automation as your product grows.",
-                icon: <TrendingUp className="w-6 h-6" />
+                icon: (
+                  <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white overflow-hidden">
+                    <motion.div
+                      animate={{
+                        scale: [1, 2, 1],
+                        opacity: [0.1, 0.4, 0.1]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-0 bg-emerald-500 rounded-full blur-xl"
+                    />
+                    <TrendingUp className="w-5 h-5 text-black relative z-10" />
+                  </div>
+                )
               }
             ].map((s, i) => (
-              <PerspectiveCard key={i} className="bg-white p-12 md:p-20 group hover:bg-slate-50">
-                <motion.div
-                  whileInView={{ y: [0, -8, 0], rotate: [0, 2, 0] }}
-                  transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut" }}
-                  className="mb-8 text-slate-300 group-hover:text-black transition-colors will-change-transform"
-                >
+              <PerspectiveCard key={i} className="bg-white p-12 md:p-20 group hover:bg-slate-100">
+                <div className="mb-8 transition-transform group-hover:scale-110 duration-500">
                   {s.icon}
-                </motion.div>
+                </div>
                 <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">
                   <motion.span
                     whileInView={{ x: [0, 3, 0] }}
@@ -283,7 +316,7 @@ export default function Home() {
             <AnimateReveal variant="slide-up">
               <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase">Technical Philosophy</span>
               <CinematicText
-                text="Built for Long-Term Impact — Not Short-Term Demos."
+                text="Built for Long-Term Impact"
                 className="font-serif text-5xl md:text-7xl leading-[1.0] mb-12"
               />
             </AnimateReveal>
@@ -301,19 +334,37 @@ export default function Home() {
             </div>
           </div>
 
-          <motion.div
-            whileInView={{ scale: [1, 1.02, 1], rotate: [0, 0.5, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white/5 rounded-2xl overflow-hidden group shadow-2xl will-change-transform"
-          />
+          <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white shadow-2xl overflow-hidden group">
+            <div className="absolute inset-0 flex items-end justify-center p-12 gap-4">
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ height: 0 }}
+                  whileInView={{ height: `${20 + (i * 10)}%` }}
+                  transition={{ duration: 2, delay: i * 0.1, ease: "easeOut" }}
+                  className="w-full bg-slate-900 overflow-hidden relative"
+                >
+                  <motion.div
+                    animate={{ y: ["-100%", "100%"] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-x-0 h-1/4 bg-gradient-to-b from-transparent via-emerald-500/50 to-transparent"
+                  />
+                </motion.div>
+              ))}
+            </div>
+            <div className="absolute top-12 left-12">
+              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500">Stability Matrix</span>
+              <div className="mt-4 text-3xl font-serif text-black opacity-40">Cumulative<br />Reliability</div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Transition CTA */}
-      <section className="py-24 md:py-40 px-6 bg-black/90 text-white text-center relative overflow-hidden z-10 transition-colors duration-1000">
+      <section className="py-24 md:py-40 px-6 bg-white/15 text-black text-center relative overflow-hidden z-10 transition-colors duration-1000">
         {/* Background Ambient Glow */}
         <motion.div
-          whileInView={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          whileInView={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute inset-0 bg-emerald-500/5 blur-[120px] pointer-events-none will-change-transform"
         />
@@ -336,7 +387,7 @@ export default function Home() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="will-change-transform"
             >
-              <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
+              <Button size="lg" className="px-12 py-8 text-xl bg-black text-white hover:bg-slate-800 transition-all uppercase font-black" asChild>
                 <Link href="/contact">Establish Connection</Link>
               </Button>
             </motion.div>
