@@ -5,7 +5,7 @@ import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { Button } from "@/components/ui/button"
 
-import { Outcome3D } from "@/components/ui/outcome-3d"
+import { ResultMatrix3D } from "@/components/ui/result-matrix-3d"
 
 const projects = [
     {
@@ -41,7 +41,7 @@ export default function Work() {
                         </AnimateReveal>
 
                         <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
-                            <Outcome3D />
+                            <ResultMatrix3D />
                         </div>
                     </div>
 
