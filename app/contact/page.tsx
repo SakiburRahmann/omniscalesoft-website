@@ -5,7 +5,7 @@ import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { Button } from "@/components/ui/button"
 
-import { Signal3D } from "@/components/ui/signal-3d"
+import { ConnectivityBeacon3D } from "@/components/ui/connectivity-beacon-3d"
 
 export default function Contact() {
     return (
@@ -20,7 +20,7 @@ export default function Contact() {
                         </AnimateReveal>
 
                         <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
-                            <Signal3D />
+                            <ConnectivityBeacon3D />
                         </div>
                     </div>
 

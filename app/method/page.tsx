@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { motion } from "framer-motion"
-import { Pipeline3D } from "@/components/ui/pipeline-3d"
+import { ProductionFlow3D } from "@/components/ui/production-flow-3d"
 
 const methods = [
     {
@@ -59,7 +59,7 @@ export default function Method() {
                         </AnimateReveal>
 
                         <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible order-last lg:order-none">
-                            <Pipeline3D />
+                            <ProductionFlow3D />
                         </div>
                     </div>
 
