@@ -3,6 +3,7 @@
 import { Container } from "@/components/ui/container"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { Logo } from "@/components/ui/logo"
 
 export function Footer() {
     return (
@@ -10,8 +11,8 @@ export function Footer() {
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
                     <div className="md:col-span-2">
-                        <Link href="/" className="inline-block text-2xl font-bold tracking-tighter text-slate-950 mb-8">
-                            OmniScale<span className="text-blue-600">Soft</span>
+                        <Link href="/" className="inline-block mb-8">
+                            <Logo />
                         </Link>
                         <p className="text-body-premium text-lg max-w-md">
                             A software architecture firm designed for people. We engineer industrial-grade digital products for global partners and for ourselves.

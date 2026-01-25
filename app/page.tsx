@@ -9,6 +9,7 @@ import { Search, Layers, Hammer, TrendingUp } from "lucide-react"
 import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
 import { LogoMarquee } from "@/components/ui/logo-marquee"
 import { HyperCore3D } from "@/components/ui/hyper-core-3d"
+import { Logo } from "@/components/ui/logo"
 
 const capabilities = [
   {
@@ -184,7 +185,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <AnimateReveal variant="fade" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-32">
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold mb-10 tracking-tight">OmniScaleSoft</h2>
+              <div className="mb-10 invert">
+                <Logo />
+              </div>
               <p className="text-slate-400 font-medium text-lg max-w-sm mb-10">
                 Engineering the next generation of digital infrastructure.
               </p>
