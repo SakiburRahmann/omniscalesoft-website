@@ -44,6 +44,7 @@ function PerspectiveCard({ children, className }: { children: React.ReactNode, c
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.innerWidth < 1024) return
     const rect = e.currentTarget.getBoundingClientRect()
     const width = rect.width
     const height = rect.height
@@ -241,15 +242,15 @@ export default function Home() {
                 icon: (
                   <div className="relative w-12 h-12 overflow-hidden border border-slate-200 bg-white">
                     <motion.div
-                      animate={{ y: ["-100%", "100%"] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/20 to-transparent"
+                      animate={{ y: ["-100%", "100%", "-100%"] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                      className="absolute inset-x-0 h-[2px] bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"
                     />
-                    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-10">
-                      {[...Array(16)].map((_, i) => <div key={i} className="border-[0.5px] border-black" />)}
+                    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-5">
+                      {[...Array(16)].map((_, j) => <div key={j} className="border-[0.5px] border-black" />)}
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Search className="w-5 h-5 text-black" />
+                      <Search className="w-5 h-5 text-black opacity-40" />
                     </div>
                   </div>
                 )
@@ -258,11 +259,16 @@ export default function Home() {
                 title: "Engineering",
                 desc: "Robust, secure, and scalable software built with modern architectures and disciplined workflows.",
                 icon: (
-                  <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white">
+                  <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white overflow-hidden">
                     <motion.div
-                      animate={{ scale: [1, 1.1, 1], rotate: [0, 90, 180, 270, 360] }}
-                      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                      className="absolute w-8 h-8 border border-emerald-500/30 rounded-sm"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-8 h-8 border border-emerald-500/20 rounded-sm"
+                    />
+                    <motion.div
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                      className="absolute w-6 h-6 border-[0.5px] border-black opacity-10"
                     />
                     <div className="relative z-10">
                       <Hammer className="w-5 h-5 text-black" />
@@ -277,11 +283,18 @@ export default function Home() {
                   <div className="relative w-12 h-12 flex items-center justify-center border border-slate-200 bg-white overflow-hidden">
                     <motion.div
                       animate={{
-                        scale: [1, 2, 1],
-                        opacity: [0.1, 0.4, 0.1]
+                        scale: [1, 1.5, 1],
+                        opacity: [0, 0.3, 0]
                       }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute inset-0 bg-emerald-500 rounded-full blur-xl"
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-4 bg-emerald-500 rounded-full blur-md"
+                    />
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                      className="absolute inset-2 border-[0.5px] border-emerald-500/10 rounded-full"
                     />
                     <TrendingUp className="w-5 h-5 text-black relative z-10" />
                   </div>

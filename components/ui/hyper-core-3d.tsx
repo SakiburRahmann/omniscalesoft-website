@@ -22,8 +22,8 @@ export function HyperCore3D({ theme = "dark", customColor }: { theme?: "light" |
             <Canvas dpr={[1, 2]}>
                 <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={35} />
                 <GeometricHub color={color} />
-                {/* Moderate autonomous orbit for a technical atmosphere */}
-                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.8} />
+                {/* Dynamic autonomous orbit for a technical atmosphere */}
+                <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={1.5} />
             </Canvas>
         </div>
     )
@@ -51,12 +51,12 @@ function GeometricHub({ color }: { color: string }) {
         activeFactor.current = THREE.MathUtils.lerp(activeFactor.current, targetActive, 0.02)
         lastMouse.current.copy(mouse)
 
-        // Slow, deliberate rotation accelerated slightly when active
-        const rotSpeed = 1.0 + (activeFactor.current * 2.0)
-        meshRef.current.rotation.y = t * 0.2 * rotSpeed
-        meshRef.current.rotation.x = t * 0.1 * rotSpeed
-        voxelRef.current.rotation.y = -t * 0.15 * rotSpeed
-        voxelRef.current.rotation.z = t * 0.05 * rotSpeed
+        // Deliberate rotation accelerated when active
+        const rotSpeed = 1.5 + (activeFactor.current * 2.5)
+        meshRef.current.rotation.y = t * 0.3 * rotSpeed
+        meshRef.current.rotation.x = t * 0.15 * rotSpeed
+        voxelRef.current.rotation.y = -t * 0.2 * rotSpeed
+        voxelRef.current.rotation.z = t * 0.08 * rotSpeed
 
         // Refined hover parallax (Interactive Depth)
         groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouse.x * 0.3, 0.1)
