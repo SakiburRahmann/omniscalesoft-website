@@ -5,9 +5,9 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Float, PerspectiveCamera, OrbitControls, Points, PointMaterial } from "@react-three/drei"
 import * as THREE from "three"
 
-export function HyperCore3D({ theme = "dark" }: { theme?: "light" | "dark" }) {
+export function HyperCore3D({ theme = "dark", customColor }: { theme?: "light" | "dark", customColor?: string }) {
     const [mounted, setMounted] = React.useState(false)
-    const color = theme === "dark" ? "white" : "black"
+    const color = customColor || (theme === "dark" ? "#94a3b8" : "black") // Slate-400 for Gray on Black 
 
     React.useEffect(() => {
         setMounted(true)

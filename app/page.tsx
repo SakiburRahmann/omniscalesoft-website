@@ -2,7 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform, useScroll, useMotionValueEvent } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { Button } from "@/components/ui/button"
@@ -142,29 +142,33 @@ const techStack = [
 ]
 
 export default function Home() {
+  const { scrollY } = useScroll()
+  const [bg3DColor, setBg3DColor] = React.useState("#94a3b8")
+
+  const colorTransform = useTransform(
+    scrollY,
+    [0, 600, 2600, 3200],
+    ["#94a3b8", "#000000", "#000000", "#94a3b8"]
+  )
+
+  useMotionValueEvent(colorTransform, "change", (latest) => {
+    setBg3DColor(latest)
+  })
+
   return (
     <main className="min-h-screen bg-white font-sans text-black">
       <LegacyNav theme="hero" />
 
       {/* Persistent Global 3D Spectacle */}
       <div className="fixed inset-0 z-0 opacity-60 pointer-events-none">
-        <HyperCore3D theme="dark" />
+        <HyperCore3D customColor={bg3DColor} />
       </div>
 
       {/* Hero Section: Institutional First Impression */}
-      <section className="relative h-screen min-h-[800px] flex items-center bg-black/40 overflow-hidden px-6 z-10">
+      <section className="relative h-screen min-h-[800px] flex items-center bg-black overflow-hidden px-6 z-10">
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <AnimateReveal variant="slide-up" staggerChildren={0.2}>
-            {/* Autonomous Pulsing Green Node */}
-            <RevealItem className="mb-10 flex items-center gap-3">
-              <motion.span
-                animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.2, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_15px_#10b981] will-change-transform"
-              />
-              <span className="text-emerald-500 text-[10px] font-black tracking-[0.4em] uppercase">Architecture Intelligence</span>
-            </RevealItem>
 
             <RevealItem className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.0] text-white mb-10 max-w-5xl">
               <motion.span
