@@ -335,47 +335,75 @@ export default function Home() {
           </div>
 
           <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-white shadow-2xl overflow-hidden group">
-            <div className="absolute inset-0 flex items-center justify-center">
-              {[...Array(6)].map((_, i) => (
+            <div className="absolute inset-0">
+              {[...Array(12)].map((_, i) => (
                 <motion.div
                   key={i}
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: [0, 0.2, 0] }}
+                  initial={{
+                    x: `${20 + Math.random() * 60}%`,
+                    y: "110%",
+                    opacity: 0,
+                    scale: 0.5
+                  }}
+                  animate={{
+                    y: "-10%",
+                    opacity: [0, 0.6, 0.6, 0],
+                    x: [
+                      `${20 + Math.random() * 60}%`,
+                      `${10 + Math.random() * 80}%`,
+                      `${30 + Math.random() * 40}%`,
+                      `${20 + Math.random() * 60}%`
+                    ],
+                    scale: [0.5, 1, 0.8]
+                  }}
                   transition={{
-                    duration: 4,
-                    delay: i * 0.6,
+                    duration: 6 + Math.random() * 4,
+                    delay: i * 0.8,
                     repeat: Infinity,
-                    ease: "easeOut"
+                    ease: "linear"
                   }}
-                  className="absolute border border-slate-900"
-                  style={{
-                    width: `${(i + 1) * 20}%`,
-                    height: `${(i + 1) * 20}%`,
-                    transformStyle: "preserve-3d"
-                  }}
+                  className="absolute w-2 h-2 bg-emerald-500 rounded-full blur-[1px]"
                 />
               ))}
-              <div className="relative z-10 text-center">
+              {/* Secondary Layer: Fainter, faster dots */}
+              {[...Array(8)].map((_, i) => (
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="w-24 h-24 border border-emerald-500/30 flex items-center justify-center p-4 bg-white/50 backdrop-blur-sm"
-                >
-                  <Layers className="w-8 h-8 text-black" />
-                </motion.div>
-              </div>
+                  key={`faint-${i}`}
+                  initial={{
+                    x: `${10 + Math.random() * 80}%`,
+                    y: "110%",
+                    opacity: 0
+                  }}
+                  animate={{
+                    y: "-10%",
+                    opacity: [0, 0.2, 0],
+                    x: [
+                      `${10 + Math.random() * 80}%`,
+                      `${5 + Math.random() * 90}%`,
+                      `${15 + Math.random() * 70}%`
+                    ]
+                  }}
+                  transition={{
+                    duration: 4 + Math.random() * 3,
+                    delay: i * 1.2,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  className="absolute w-1 h-1 bg-slate-400 rounded-full"
+                />
+              ))}
             </div>
-            <div className="absolute top-12 left-12">
-              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500">Systemic Integrity</span>
-              <div className="mt-4 text-3xl font-serif text-black opacity-40">Recursive<br />Architecture</div>
+            <div className="absolute bottom-12 left-12 z-10">
+              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-emerald-500">Growth Determinism</span>
+              <div className="mt-4 text-3xl font-serif text-black opacity-40">Infinite<br />Organic Scaling</div>
             </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white pointer-events-none" />
           </div>
         </div>
       </section>
 
       {/* Transition CTA */}
-      {/* Transition CTA */}
-      <section className="py-24 md:py-40 px-6 bg-black text-white text-center relative overflow-hidden z-10 transition-colors duration-1000">
+      <section className="py-24 md:py-40 px-6 bg-black/85 text-white text-center relative overflow-hidden z-10 transition-colors duration-1000">
         {/* Background Ambient Glow */}
         <motion.div
           whileInView={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
