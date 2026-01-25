@@ -40,8 +40,8 @@ export function LegacyNav({ theme = "default" }: { theme?: "hero" | "default" })
                     <Link href="/capabilities" className={cn("text-sm font-bold transition-all", linkColorClass)}>Capabilities</Link>
                     <Link href="/work" className={cn("text-sm font-bold transition-all", linkColorClass)}>Work</Link>
                     <Link href="/method" className={cn("text-sm font-bold transition-all", linkColorClass)}>Method</Link>
-                    <Button variant={displayTheme === "light" ? "outline" : "action"} size="sm" asChild>
-                        <Link href="/contact" className={cn(displayTheme === "light" && "border-white/20 text-white hover:bg-white hover:text-black transition-all bg-transparent")}>Let's Talk</Link>
+                    <Button variant={displayTheme === "light" ? "default" : "action"} size="sm" asChild className={cn(displayTheme === "light" && "bg-white text-black hover:bg-slate-200 transition-all font-bold tracking-tight shadow-sm")}>
+                        <Link href="/contact">Let's Talk</Link>
                     </Button>
                 </div>
 

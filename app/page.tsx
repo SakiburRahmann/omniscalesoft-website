@@ -326,14 +326,14 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="space-y-12 text-center md:text-left">
             <AnimateReveal variant="slide-up">
-              <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase">Technical Philosophy</span>
+              <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase drop-shadow-sm">Technical Philosophy</span>
               <CinematicText
                 text="Built for Long-Term Impact"
-                className="font-serif text-5xl md:text-8xl leading-[1.0] mb-12"
+                className="font-serif text-5xl md:text-8xl leading-[1.0] mb-12 drop-shadow-md"
               />
             </AnimateReveal>
 
-            <div className="space-y-8 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl">
+            <div className="space-y-8 text-xl md:text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl drop-shadow-sm">
               <motion.div whileInView={{ x: [-2, 2, -2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} className="will-change-transform">
                 <CinematicText text="At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks." />
               </motion.div>
