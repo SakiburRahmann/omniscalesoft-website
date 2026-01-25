@@ -2,7 +2,8 @@
 
 import React from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { cn } from "@/lib/utils"
 import { LegacyNav } from "@/components/layout/legacy-nav"
 import { Button } from "@/components/ui/button"
 import { Search, Layers, Hammer, TrendingUp } from "lucide-react"
@@ -33,6 +34,74 @@ const capabilities = [
 const stack = ["Next.js", "TypeScript", "Supabase", "Tailwind", "Framer Motion"]
 
 const partners = ["Stark Ind", "Wayne Ent", "Cyberdyne", "Umbrella", "Massive Dynamic", "Hooli", "Initech"]
+
+function PerspectiveCard({ children, className }: { children: React.ReactNode, className?: string }) {
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const mouseXSpring = useSpring(x)
+  const mouseYSpring = useSpring(y)
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className={cn("relative transition-colors duration-500", className)}
+    >
+      <div style={{ transform: "translateZ(50px)", transformStyle: "preserve-3d" }}>
+        {children}
+      </div>
+    </motion.div>
+  )
+}
+
+export function CinematicText({ text, className }: { text: string, className?: string }) {
+  const words = text.split(" ")
+  const container: any = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.08, delayChildren: 0.04 * i },
+    }),
+  }
+  const child: any = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", damping: 12, stiffness: 100 },
+    },
+    hidden: { opacity: 0, y: 20 },
+  }
+
+  return (
+    <motion.div variants={container} initial="hidden" whileInView="visible" className={cn("flex flex-wrap gap-x-[0.3em] gap-y-[0.1em]", className)}>
+      {words.map((word, index) => (
+        <motion.span key={index} variants={child}>
+          {word}
+        </motion.span>
+      ))}
+    </motion.div>
+  )
+}
 
 const methods = [
   {
@@ -139,11 +208,18 @@ export default function Home() {
                 icon: <TrendingUp className="w-6 h-6" />
               }
             ].map((s, i) => (
-              <AnimateReveal key={i} variant="slide-up" className="bg-white p-12 md:p-20 group hover:bg-slate-50 transition-colors">
-                <div className="mb-8 text-slate-300 group-hover:text-black transition-colors">{s.icon}</div>
+              <PerspectiveCard key={i} className="bg-white p-12 md:p-20 group hover:bg-slate-50">
+                <motion.div
+                  initial={{ rotate: 0 }}
+                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  className="mb-8 text-slate-300 group-hover:text-black transition-colors"
+                >
+                  {s.icon}
+                </motion.div>
                 <h3 className="text-3xl font-bold mb-6 uppercase tracking-tight">{s.title}</h3>
                 <p className="text-xl text-slate-500 font-medium leading-relaxed">{s.desc}</p>
-              </AnimateReveal>
+                <div className="mt-8 h-px w-0 bg-black group-hover:w-full transition-all duration-700" />
+              </PerspectiveCard>
             ))}
           </div>
         </div>
@@ -152,24 +228,23 @@ export default function Home() {
       {/* Philosophy: Proof of Thinking */}
       <section className="py-24 md:py-48 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <AnimateReveal variant="slide-up">
-            <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase">Technical Philosophy</span>
-            <h2 className="font-serif text-5xl md:text-7xl mb-12 leading-[1.0]">Built for Long-Term Impact — Not Short-Term Demos<span className="text-emerald-500">.</span></h2>
-            <div className="space-y-8 text-xl text-slate-500 font-medium leading-relaxed">
-              <p>
-                At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks.
-              </p>
-              <p>
-                Every line of code and architectural decision is weighed against three core metrics:
-                <strong className="text-black"> Maintainability, Security, and Long-term Operational Cost.</strong>
-              </p>
-              <p>
-                This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure.
-              </p>
-            </div>
-          </AnimateReveal>
+          <div className="space-y-12">
+            <AnimateReveal variant="slide-up">
+              <span className="text-[10px] font-black tracking-[0.2em] text-slate-400 mb-8 block uppercase">Technical Philosophy</span>
+              <CinematicText
+                text="Built for Long-Term Impact — Not Short-Term Demos."
+                className="font-serif text-5xl md:text-7xl leading-[1.0] mb-12"
+              />
+            </AnimateReveal>
 
-          <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group">
+            <div className="space-y-8 text-xl text-slate-500 font-medium leading-relaxed">
+              <CinematicText text="At OmniScaleSoft, we don't chase temporary trends. We engineer systems that are designed to live for years, not weeks." />
+              <CinematicText text="Every line of code and architectural decision is weighed against three core metrics: Maintainability, Security, and Long-term Operational Cost." />
+              <CinematicText text="This disciplined approach is why serious founders and enterprise heads choose us to build their mission-critical infrastructure." />
+            </div>
+          </div>
+
+          <div className="relative h-[400px] lg:h-[600px] border border-slate-100 bg-[#f8f9fa] rounded-2xl overflow-hidden group shadow-2xl">
             <div className="absolute inset-0 opacity-100 transition-opacity duration-700">
               <HyperCore3D theme="light" />
             </div>
@@ -182,9 +257,14 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
           <AnimateReveal variant="slide-up">
             <h2 className="font-serif text-4xl md:text-6xl mb-12">Have a complex idea? <br />Let&apos;s talk about it.</h2>
-            <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
-              <Link href="/contact">Establish Connection</Link>
-            </Button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button size="lg" className="px-12 py-8 text-xl bg-white text-black hover:bg-slate-200 transition-all uppercase font-black" asChild>
+                <Link href="/contact">Establish Connection</Link>
+              </Button>
+            </motion.div>
           </AnimateReveal>
         </div>
       </section>
