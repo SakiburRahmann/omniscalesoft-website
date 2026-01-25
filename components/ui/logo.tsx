@@ -3,7 +3,10 @@
 import React from "react"
 import { cn } from "@/lib/utils"
 
-export function Logo({ className }: { className?: string }) {
+export function Logo({ className, variant = "dark" }: { className?: string, variant?: "light" | "dark" }) {
+    const isLight = variant === "light"
+    const colorClass = isLight ? "text-white" : "text-black"
+
     return (
         <div className={cn("flex items-center gap-3 group cursor-pointer", className)}>
             {/* Architectural Octagonal Symbol */}
@@ -13,7 +16,7 @@ export function Logo({ className }: { className?: string }) {
                 viewBox="0 0 100 100"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-black transition-transform duration-500 group-hover:rotate-45"
+                className={cn(colorClass, "transition-transform duration-500 group-hover:rotate-45")}
             >
                 {/* Outer Octagon Frame */}
                 <path
@@ -68,7 +71,7 @@ export function Logo({ className }: { className?: string }) {
 
             {/* Brand Typography */}
             <span className="flex flex-col leading-none">
-                <span className="text-lg font-serif font-black tracking-tight text-black flex items-baseline">
+                <span className={cn("text-lg font-serif font-black tracking-tight flex items-baseline", colorClass)}>
                     OmniScale<span className="text-[10px] font-black tracking-[0.2em] ml-1 text-slate-400 uppercase">Soft</span>
                 </span>
             </span>

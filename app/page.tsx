@@ -75,7 +75,7 @@ const techStack = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-white font-sans text-black">
-      <LegacyNav />
+      <LegacyNav theme="hero" />
 
       {/* Hero Section: Institutional First Impression */}
       <section className="relative h-screen min-h-[800px] flex items-center bg-black overflow-hidden px-6">
