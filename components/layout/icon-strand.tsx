@@ -24,15 +24,15 @@ export function IconStrand() {
                 <motion.div
                     initial={{ x: 0 }}
                     animate={{ x: "-50%" }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                    transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                     className="flex items-center gap-24 px-12"
                 >
                     {[...icons, ...icons].map((item, i) => (
                         <div key={i} className="flex items-center gap-4 group cursor-default">
-                            <div className="w-16 h-16 rounded-full border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-500">
+                            <div className="w-16 h-16 rounded-full border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white group-active:bg-black group-active:text-white transition-all duration-500">
                                 <item.Icon className="w-6 h-6" />
                             </div>
-                            <span className="text-[12px] font-black uppercase tracking-[0.3em] text-black/80 group-hover:text-black transition-colors">
+                            <span className="text-[12px] font-black uppercase tracking-[0.3em] text-black/80 group-hover:text-black group-active:text-black transition-colors">
                                 {item.label}
                             </span>
                         </div>

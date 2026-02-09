@@ -53,7 +53,7 @@ export function FeatureDepth() {
                         i % 2 === 1 ? "lg:flex-row-reverse" : ""
                     )}>
                         <div className="w-full lg:w-1/2 space-y-12">
-                            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter text-premium leading-[0.85]">
+                            <h2 className="text-4xl md:text-8xl font-bold tracking-tighter text-premium leading-[0.85]">
                                 {f.title}
                             </h2>
                             <div className="space-y-8">
@@ -157,13 +157,15 @@ function WebAppsAnim() {
             {/* Floating Network Nodes */}
             {[...Array(8)].map((_, i) => {
                 const angle = (i * Math.PI * 2) / 8;
+                const targetX = Number((50 + 35 * Math.cos(angle)).toFixed(3));
+                const targetY = Number((50 + 35 * Math.sin(angle)).toFixed(3));
                 return (
                     <motion.circle
                         key={i}
                         r="1" fill="black"
                         animate={{
-                            cx: [50, 50 + 35 * Math.cos(angle)],
-                            cy: [50, 50 + 35 * Math.sin(angle)],
+                            cx: [50, targetX],
+                            cy: [50, targetY],
                             opacity: [0, 1, 0],
                             scale: [1, 1.5, 1]
                         }}
@@ -264,8 +266,8 @@ function SystemAIAnim() {
             {/* Connecting Nodes */}
             {[...Array(6)].map((_, i) => {
                 const angle = (i * Math.PI * 2) / 6;
-                const tx = 50 + 32 * Math.cos(angle);
-                const ty = 50 + 32 * Math.sin(angle);
+                const tx = Number((50 + 32 * Math.cos(angle)).toFixed(3));
+                const ty = Number((50 + 32 * Math.sin(angle)).toFixed(3));
                 return (
                     <g key={i}>
                         <motion.line

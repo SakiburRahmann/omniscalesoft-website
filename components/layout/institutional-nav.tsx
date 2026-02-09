@@ -82,7 +82,7 @@ export function InstitutionalNav() {
                 {/* Mobile & Action Buttons */}
                 <div className="flex items-center gap-4">
                     <Button variant="default" size="lg" className="hidden md:flex rounded-full h-11 px-8 text-[11px] font-black uppercase tracking-widest shadow-xl shadow-black/10" asChild>
-                        <Link href="/contact">Establish Connection</Link>
+                        <Link href="/contact">Let's Talk</Link>
                     </Button>
 
                     <button
@@ -119,7 +119,7 @@ export function InstitutionalNav() {
                                     <Link
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-4xl font-bold uppercase tracking-tighter text-black"
+                                        className="text-2xl md:text-4xl font-bold uppercase tracking-tighter text-black"
                                     >
                                         {link.name}
                                     </Link>
@@ -135,8 +135,8 @@ export function InstitutionalNav() {
                                 }}
                                 className="pt-8"
                             >
-                                <Button className="rounded-full h-16 px-16 text-[14px] font-black uppercase tracking-widest shadow-2xl shadow-black/10" asChild onClick={() => setIsOpen(false)}>
-                                    <Link href="/contact">Establish Connection</Link>
+                                <Button className="rounded-full h-16 px-16 text-[14px] font-black uppercase tracking-widest shadow-2xl shadow-black/10" asChild>
+                                    <Link href="/contact">Let's Talk</Link>
                                 </Button>
                             </motion.div>
                         </div>

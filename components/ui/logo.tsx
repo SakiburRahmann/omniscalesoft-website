@@ -7,12 +7,23 @@ interface LogoProps {
 }
 
 export function Logo({ className, variant = "default" }: LogoProps) {
+    const isLight = variant === "light"
     return (
-        <div className={cn("text-xl font-bold tracking-tighter select-none flex items-center gap-2", className)}>
-            <div className="w-5 h-5 bg-black rounded-sm flex items-center justify-center">
-                <div className="w-2 h-2 border-2 border-white rotate-45" />
+        <div className={cn(
+            "text-xl font-bold tracking-tighter select-none flex items-center gap-3",
+            isLight ? "text-white" : "text-black",
+            className
+        )}>
+            <div className={cn(
+                "w-6 h-6 rounded-sm flex items-center justify-center transition-colors",
+                isLight ? "bg-white" : "bg-black"
+            )}>
+                <div className={cn(
+                    "w-2.5 h-2.5 border-2 rotate-45",
+                    isLight ? "border-black" : "border-white"
+                )} />
             </div>
-            <span className="uppercase">OmniScaleSoft</span>
+            <span className="uppercase tracking-tight">OmniScaleSoft</span>
         </div>
     )
 }

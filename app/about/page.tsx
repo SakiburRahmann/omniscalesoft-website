@@ -27,7 +27,7 @@ export default function About() {
                 <div className="max-w-[1400px] mx-auto">
                     <TextReveal
                         text="The Software Standard."
-                        className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tighter text-premium mb-32"
+                        className="text-6xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter text-premium mb-16 md:mb-32"
                         delay={0.2}
                     />
 
@@ -42,7 +42,7 @@ export default function About() {
                         <div className="space-y-12">
                             {themes.map((t, i) => (
                                 <Reveal key={i} delay={0.4 + i * 0.2}>
-                                    <div className="p-12 bg-black text-white rounded-3xl space-y-6 hover:scale-[1.02] transition-transform duration-500">
+                                    <div className="p-12 bg-black text-white rounded-3xl space-y-6 hover:scale-[1.02] active:scale-[1.02] transition-transform duration-500">
                                         <h3 className="text-3xl font-bold">{t.title}</h3>
                                         <p className="text-lg text-white/60 font-medium leading-relaxed">{t.desc}</p>
                                     </div>

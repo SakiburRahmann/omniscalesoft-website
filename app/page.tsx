@@ -23,7 +23,7 @@ export default function Home() {
                 <div className="max-w-[1400px] w-full space-y-16 md:space-y-24 z-10 pt-48 flex flex-col items-center">
                     <TextReveal
                         text="We make software that scale with your business."
-                        className="text-5xl md:text-7xl lg:text-[7.5rem] font-bold leading-[0.85] tracking-tighter text-premium text-center"
+                        className="text-6xl md:text-7xl lg:text-[7.5rem] font-bold leading-[0.85] tracking-tighter text-premium text-center px-4"
                         delay={0.2}
                     />
 

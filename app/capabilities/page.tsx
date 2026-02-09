@@ -29,7 +29,7 @@ export default function Capabilities() {
                 <div className="max-w-[1400px] mx-auto">
                     <TextReveal
                         text="The Delivery Engine."
-                        className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tighter text-premium mb-32"
+                        className="text-6xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter text-premium mb-16 md:mb-32"
                         delay={0.2}
                     />
 
@@ -41,9 +41,9 @@ export default function Capabilities() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                                 {categories.map((c, i) => (
                                     <Reveal key={i} delay={0.4 + i * 0.1}>
-                                        <div className="p-10 border-2 border-black/5 hover:border-black transition-all group flex items-center justify-between rounded-[2rem] hover:scale-105 duration-500">
+                                        <div className="p-10 border-2 border-black/5 hover:border-black active:border-black transition-all group flex items-center justify-between rounded-[2rem] hover:scale-105 active:scale-105 duration-500">
                                             <span className="text-[12px] font-black uppercase tracking-widest">{c.title}</span>
-                                            <c.icon className="w-8 h-8 text-black/40 group-hover:text-black transition-colors" />
+                                            <c.icon className="w-8 h-8 text-black/40 group-hover:text-black group-active:text-black transition-colors" />
                                         </div>
                                     </Reveal>
                                 ))}

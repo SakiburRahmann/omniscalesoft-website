@@ -22,9 +22,18 @@ export const Reveal = ({
 }: RevealProps) => {
     const ref = useRef(null)
     const isInView = useInView(ref, { once: true, margin: "-100px" })
+    const [isComplete, setIsComplete] = React.useState(false)
 
     return (
-        <div ref={ref} className={className} style={{ position: "relative", width, overflow: "hidden" }}>
+        <div
+            ref={ref}
+            className={className}
+            style={{
+                position: "relative",
+                width,
+                overflow: isComplete ? "visible" : "hidden"
+            }}
+        >
             <motion.div
                 variants={{
                     hidden: { opacity: 0, y },
@@ -32,6 +41,7 @@ export const Reveal = ({
                 }}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
+                onAnimationComplete={() => setIsComplete(true)}
                 transition={{
                     duration,
                     delay,

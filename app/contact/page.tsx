@@ -13,8 +13,8 @@ export default function Contact() {
             <section className="pt-40 pb-24 px-8 md:px-12 lg:px-24">
                 <div className="max-w-[1400px] mx-auto">
                     <TextReveal
-                        text="Let's Construct."
-                        className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tighter text-premium mb-32"
+                        text="Establish Connection."
+                        className="text-6xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter text-premium mb-24 md:mb-32"
                         delay={0.2}
                     />
 
