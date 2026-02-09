@@ -1,65 +1,78 @@
 "use client"
 
-import React from "react"
-import { LegacyNav } from "@/components/layout/legacy-nav"
-import { AnimateReveal, RevealItem } from "@/components/ui/animate-reveal"
-import { SkillMatrix3D } from "@/components/ui/skill-matrix-3d"
+import { InstitutionalNav } from "@/components/layout/institutional-nav"
+import { Footer } from "@/components/layout/footer"
+import { Reveal, TextReveal } from "@/components/ui/motion-provider"
+import { Monitor, Box, Layout, Zap, ArrowRight, Activity, Cpu, Layers } from "lucide-react"
 
-const caps = [
-    {
-        num: "01",
-        title: "Product Strategy",
-        desc: "We help you define what to build and why. From market research to MVP definition, we validate assumptions before writing a single line of code.",
-    },
-    {
-        num: "02",
-        title: "System Architecture",
-        desc: "Designed for scale from Day 1. We architect cloud-native distributed systems that can handle millions of users without breaking a sweat.",
-    },
-    {
-        num: "03",
-        title: "Full-Stack Engineering",
-        desc: "TypeScript, Rust, Python, Go. We use the right tool for the job, prioritizing performance, type safety, and maintainability.",
-    },
-    {
-        num: "04",
-        title: "AI & ML Integration",
-        desc: "Leveraging Large Language Models and custom training pipelines to give your application a competitive edge in the automation era.",
-    },
+const categories = [
+    { title: "Client Software Development", icon: Monitor },
+    { title: "Product Engineering", icon: Box },
+    { title: "UI/UX Design", icon: Layout },
+    { title: "AI & Automation", icon: Zap }
+]
+
+const methodology = [
+    { title: "Discovery & Planning", desc: "Technical mapping of objectives and constraints." },
+    { title: "Design & Architecture", desc: "Structural blueprinting for high-integrity systems." },
+    { title: "Development", desc: "Precision engineering with zero technical debt." },
+    { title: "Testing & Deployment", desc: "Comprehensive validation and global-scale launch." },
+    { title: "Maintenance & Scaling", desc: "Iterative growth and structural optimization." }
 ]
 
 export default function Capabilities() {
     return (
-        <main className="min-h-screen bg-white font-sans text-black">
-            <LegacyNav />
+        <main className="min-h-screen">
+            <InstitutionalNav />
 
-            <section className="pt-40 pb-24 md:pt-60 px-6">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center mb-32">
-                        <AnimateReveal variant="slide-up">
-                            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-12 leading-[0.9]">Capabilities<span className="text-[#000000]">.</span></h1>
-                            <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-xl leading-relaxed">
-                                We operate at the intersection of Strategy, Design, and Engineering. Our multidisciplinary teams build products that define categories.
-                            </p>
-                        </AnimateReveal>
+            <section className="pt-40 pb-24 px-8 md:px-12 lg:px-24">
+                <div className="max-w-[1400px] mx-auto">
+                    <TextReveal
+                        text="The Delivery Engine."
+                        className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tighter text-premium mb-32"
+                        delay={0.2}
+                    />
 
-                        {/* Sub-page 3D Focal Point: The Skill Matrix */}
-                        <div className="relative w-full h-[400px] lg:h-[600px] overflow-visible">
-                            <SkillMatrix3D />
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-32 border-t-2 border-black pt-24">
+                        <div className="space-y-16">
+                            <Reveal>
+                                <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight uppercase">Core Categories</h2>
+                            </Reveal>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                                {categories.map((c, i) => (
+                                    <Reveal key={i} delay={0.4 + i * 0.1}>
+                                        <div className="p-10 border-2 border-black/5 hover:border-black transition-all group flex items-center justify-between rounded-[2rem] hover:scale-105 duration-500">
+                                            <span className="text-[12px] font-black uppercase tracking-widest">{c.title}</span>
+                                            <c.icon className="w-8 h-8 text-black/40 group-hover:text-black transition-colors" />
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="space-y-16">
+                            <Reveal>
+                                <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight uppercase">Methodology</h2>
+                            </Reveal>
+                            <div className="space-y-12">
+                                {methodology.map((m, i) => (
+                                    <Reveal key={i} delay={0.6 + i * 0.1} y={20}>
+                                        <div className="flex gap-12 group">
+                                            <span className="text-4xl md:text-6xl font-black text-black/10 group-hover:text-black transition-colors leading-none">0{i + 1}</span>
+                                            <div>
+                                                <h3 className="text-2xl font-black mb-4">{m.title}</h3>
+                                                <p className="text-xl text-black/70 font-bold leading-tight">{m.desc}</p>
+                                            </div>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
                         </div>
                     </div>
-
-                    <AnimateReveal variant="slide-up" staggerChildren={0.15} className="grid grid-cols-1 md:grid-cols-2 gap-24">
-                        {caps.map((item, i) => (
-                            <RevealItem key={i} className="group">
-                                <div className="text-[10px] font-black tracking-[0.3em] text-black mb-6 uppercase border-b border-slate-100 pb-2 w-fit">{item.num}</div>
-                                <h3 className="text-3xl font-bold mb-6 group-hover:text-blue-600 transition-colors uppercase tracking-tight">{item.title}</h3>
-                                <p className="text-xl text-slate-500 font-medium leading-relaxed">{item.desc}</p>
-                            </RevealItem>
-                        ))}
-                    </AnimateReveal>
                 </div>
             </section>
+
+            <Footer />
         </main>
     )
 }
